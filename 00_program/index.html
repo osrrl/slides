@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Science for Linguists</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Joseph V. Casillas, PhD" />
+    <script src="https://use.fontawesome.com/5235085b15.js"></script>
+    <link rel="stylesheet" href="https://www.jvcasillas.com/ru_xaringan/css/rutgers.css" type="text/css" />
+    <link rel="stylesheet" href="https://www.jvcasillas.com/ru_xaringan/css/rutgers-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data Science for Linguists
+## Program
+### Joseph V. Casillas, PhD
+### Rutgers University</br>Spring 2018</br>Last update: 2018-02-22
+
+---
+
+
+
+
+
+
+
+# Overview
+
+Spring 2018  
+Tuesday 09:50 – 12:50 pm  
+Meetings: AB 5141  
+Profesor: Joseph Casillas  
+
+Office: AB 5174  
+Office hours: Tuesday before class and by appointment  
+Email: joseph.casillas@rutgers.edu
+
+---
+
+.pull-left[
+
+# Office hours
+
+- I'm usually available before and after class
+
+- You can set up an appointment [here](https://jvcasillas.youcanbook.me)
+
+]
+
+.pull-right[
+
+https://jvcasillas.youcanbook.me
+
+
+&lt;iframe src="https://jvcasillas.youcanbook.me" height="500" width=100% frameborder=0&gt;&lt;/iframe&gt;
+
+]
+
+---
+
+# Course desecription
+
+### SPAN589: Data Science for Linguistics
+
+In this course students examine the fundamental principles of doing experimental 
+research in linguistics. Specifically, the focus is on developing an in depth 
+understanding of the experimental paradigms and statistical procedures used in 
+sociolinguistics, phonetics, psycholinguistics, syntax, and corpus linguistics. 
+Students will learn advanced techniques used to explore, tidy, visualize, and 
+analyze data. We will also focus on how to make the aforementioned procedures 
+reproducible and shareable. Students will develop a foundation in programming in 
+R, as well as learning the most common tools at the disposal of todays data 
+scientist (i.e. GitHub, Knitr, etc.). No prior experience with statistics or 
+programming is necessary.  
+Pre-requisites: SPAN 361 or 363
+
+---
+layout: true
+
+# Materials
+
+---
+
+### Class websites
+
+- Sakai: https://sakai.rutgers.edu/portal/site/c0add82e-3c74-45df-8f34-dcb0fff07bf8
+
+- Class website: http://www.jvcasillas.com/ru_teaching/ru_spanish_589/589_01_s2018/  
+
+---
+
+### Books
+
+
+|     |                                                                                 |                 |
+| --- | ------------------------------------------------------------------------------- | --------------- |
+|   1 | Wickham, H., &amp; Grolemund, G. (2017). R for Data Science. O'Reilly Media.        | [Online][book1] |
+|     |                                                                                 |                 |
+|   2 | Johnson, K. (2008). Quantitative Methods in Linguistics. Blackwell Publishing.  | [Amazon][book2] |
+|     |                                                                                 |                 |
+|   3 | Lewis-Beck, M. (1980). Applied Regression: An Introduction. Volume 22 of        | [Amazon][book3] |
+|     | Quantitative Applications in the Social Sciences. Sage Publications.            |                 |
+|     |                                                                                 |                 |
+|   4 | Berry, W., &amp; Feldman, S. (1985). Multiple Regression in Practice. Issue 50.     | [Amazon][book4] |
+|     | Quantitative Applications in the Social Sciences. Sage Publications.            |                 |
+|     |                                                                                 |                 |
+|   5 | Schroeder, L. D., Sjoquist, D. L., &amp; Stephan, P. E. (1986). Understanding       | [Amazon][book5] |
+|     | Regression Analysis: An Introductory Guide. Issue 57. Quantitative Applications |                 |
+|     | in the Social Sciences. Sage Publications.                                      |                 |
+|     |                                                                                 |                 |
+|   6 | Hardy, M. A. (1993). Regression with Dummy Variables. Issue 93. Quantitative    | [Amazon][book6] |
+|     | Applications in the Social Sciences. Sage Publications.                         |                 |
+
+[book1]: http://r4ds.had.co.nz
+[book2]: http://a.co/9ArHNqO
+[book3]: http://a.co/2zyfhXj
+[book4]: http://a.co/8jcU0ef
+[book5]: http://a.co/gE2xmLr
+[book6]: http://a.co/8Spewd9
+
+---
+
+### Weekly readings
+
+Students will receive a package of readings to be distributed in electronic format (.pdf).
+
+---
+layout: true
+
+# Coursework
+
+---
+
+### Evaluation
+
+|                               |     |     |         |
+| :---------------------------- | --: | :-- | ------: |
+| Preparation and participation | 15% | A   | 92--100 |
+| Programming assignments       | 40% | B+  |  87--91 |
+| Online presentation           | 10% | B   |  80--86 |
+| Midterm exam                  | 15% | C+  |  77--79 |
+| Research project              | 20% | C   |  70--76 |
+| - paper (8%)                  |     | D   |  65--69 |
+| - presentation (6%)           |     | F   |   0--64 |
+| - peer review (6%)            |     |     |         |
+
+---
+
+### Preparation and participation
+
+Students are expected to attend class prepared and to actively participate. 
+Part of this grade is derived from reading summaries. Students will 
+occasionally be required to write a brief summary (max. 1 page) of the weekly 
+readings and answer assigned questions. 
+
+---
+
+### Programming assignments
+
+Students will complete 4 programming assignments over the course of the 
+semester. These assignments are designed in a way so that the student must 
+demonstrate adequate knowledge of basic programming and statistical principles 
+covered in class. The skills required in each assignment are cumulative, each 
+building on the material learned in the previous weeks. All statistical 
+programming assignments must be completed in RMarkdown and will be handed in 
+via GitHub unless otherwise noted.
+
+---
+
+### Online presentation
+
+The presentation will be on the statistical analyses used in some published 
+paper. This presentation must be hosted on GitHub and in HTML format using 
+RMarkdown. Aside from creating an online presentation, students will also be 
+required to read and comment on the presentations of two classmates. 
+
+---
+
+### Midterm exam
+
+There will be an in-class exam during the 11th week of the semester (April 
+3rd). Details will be provided beforehand. 
+
+---
+
+### Research Project
+
+#### Overview
+
+Each student will complete a research project in which they put in practice 
+the tools learned over the course of the semester. The primary focus will be 
+on managing the project in an automatic and reproducible way so that it can 
+be shared with other collaborators. The project will be hosted on GitHub and 
+will include the following:
+
+- slides
+- manuscript
+- r code
+- data (raw and tidy)
+
+---
+
+### Research Project
+
+#### Overview
+
+Students have two options regarding the type of project they do:
+
+1. Personal project (real)
+    - For advanced students working on their own data
+    - Ideal for QP, thesis, other projects
+2. Hypothetical project (simulated)
+    - For students w/o data
+    - Ideal for students in proposal phase (IRB, NSF, ect.)
+
+All projects require the prior approval of the professor. Project due dates 
+will be established in class, but can be expected to be due several days 
+before the university assigned final exam (though there is no exam).
+
+---
+
+### Research Project
+
+#### Paper
+
+The manuscript will be a write up of the methods/results sections of a research 
+article. The focus is on clearly and accurately explaining the statistical 
+analyses used in the project and appropriately interpreting the results. The 
+paper must be a literate document written in RMarkdown using ```papaja```. We 
+will demo this in class.
+
+#### Presentation
+
+Students will present their work in a semi-finished state during the final 
+week of the semester (10 min. presentation + 5 min. for questions). The slides 
+of this presentation are part of the project and must also be hosted on GitHub.
+
+---
+
+### Research Project
+
+#### Peer review
+
+Each student is required to evaluate the project of two other students. They 
+will fork the project in order to evaluate the reproducibility of the code 
+and the statistical validity of the analysis. Students will write up two 
+evaluations for each peer: one for the professor (not to be seen by anybody 
+else), and one for the owner of the project in the form of an issue/comment on 
+GitHub. The evaluation written for the professor should be longer and more in 
+depth. Both evaluations should be written in the style of a peer review for an
+academic journal, thus they should include comments, questions, suggestions, and 
+*constructive* criticisms (\#BeReviewer1). The point of this excersize is to 
+help the author make the final product better. 
+
+---
+layout: true
+
+# Department rules and course policy
+
+---
+
+The course is designed to satisfy the learning goals of the Department of 
+Spanish and Portuguese. More information available at: http://span-port.rutgers.edu/learning-goals
+
+### Communication
+
+All course communication will be via Slack. You should have received an email 
+with an invitation link to join the course Slack. Some rules for using Slack:
+
+- Use an identifiable username and add your picture to your profile.
+- Only the professor is allowed to use the @channel and @here mentions.
+- While this is an informal communication channel, all rules of academic 
+discourse apply.
+- Ask and answer questions on the appropriate channel.
+- Create channels as needed, especially for study groups.
+
+---
+
+### Attendance
+
+Regular class attendance is essential for successful completion of the course. 
+More than 1 absences will have a negative effect on your final grade. The 2nd 
+absence and every subsequent absence after that will result in the loss of 5% 
+point off the final overall course grade, regardless of reason. Keep in mind 
+that while you have 1 "free" absence, on the day/s you miss you will not be able 
+to earn participation points, you will miss the material given in class and you 
+might miss your own presentation. If you are absent, contact a classmate 
+immediately to get the assignments and to keep up with the material scheduled in 
+the syllabus. The instructor is not responsible for catching you up. Do not 
+send emails to the instructor asking for updates if you missed class.
+
+Any planned absence that you are aware of ahead of time, such as religious 
+holidays recognized by Rutgers University or Dean's excuses, should be 
+made up before the absence occurs. If you know that you will be absent, it is 
+your responsibility to let the instructor know ahead of time. All holidays or 
+special events observed by any religion will be honored for those students who 
+show affiliation with that particular religion. Absences pre-approved by the RU 
+Dean of Students (or Dean's designee) will be honored.
+
+---
+
+### Code of academic integrity
+
+The professor will initiate an academic integrity case against students 
+suspected of cheating, plagiarizing, or aiding others in dishonest academic 
+behavior. Students are responsible for reading and understanding the Code of 
+Academic Integrity.
+
+Examples of academic dishonesty include, but are not limited to, plagiarism, 
+cheating, and aiding and abetting dishonesty. An example of plagiarism would be 
+to submit a written sample which in part or in whole is not the student's own 
+work without attributing the source. Cheating includes allowing another person 
+to do your work and to submit the work under one's own name. Any work which is 
+submitted for a grade must be 100% the student's own work. If you are not sure 
+when it is appropriate to seek help, please see the professor.
+
+---
+
+### Students with disabilities
+
+Rutgers University welcomes students with disabilities into all of the 
+University's educational programs. In order to receive consideration for 
+reasonable accommodations, a student with a disability must contact the 
+appropriate disability services office at the campus where you are officially 
+enrolled, participate in an intake interview, and provide documentation: 
+[https://ods.rutgers.edu/students/documentation-guidelines](https://ods.rutgers.edu/students/documentation-guidelines).  
+
+If the documentation supports your request for reasonable accommodations, your 
+campus’s disability services office will provide you with a Letter of 
+Accommodations. Please share this letter with your instructors and discuss the 
+accommodations with them as early in your courses as possible. To begin this 
+process, please complete the Registration form on the ODS web site at: 
+[https://ods.rutgers.edu/students/registration-form](https://ods.rutgers.edu/students/registration-form).
+
+---
+layout: false
+
+# Schedule
+
+| Week |  Date |                               Topic                               |
+| :--: | :---: | :---------------------------------------------------------------- |
+|  1   | 01/16 | Intro, Setup, GitHub, PA1 assigned                                |
+|  2   | 01/23 | Stats: Variables, distributions                                   |
+|      |       | Programming: RStudio projects, RMarkdown, ggplot                  |
+|  3   | 01/30 | Stats: Hypothesis testing, comparing means                        |
+|      |       | Programming: PA2 assigned, R basics, getting/tidying data, ggplot |
+|  4   | 02/06 | Stats: Bivariate correlation                                      |
+|      |       | Programming: R basics, tidying/transforming data, ggplot          |
+|  5   | 02/13 | Stats: The linear model: regression                               |
+|      |       | Programming: PA3 assigned, R basics, GitHub Pages                 |
+|  6   | 02/20 | Stats: The linear model/regression                                |
+|      |       | Programming: R basics, HTML presentations, slidify                |
+|  7   | 02/27 | Stats: The linear model/regression                                |
+|      |       | Programming: PA4 assigned, HTML presentations, xaringan           |
+|  8   | 03/06 | Stats: The linear model/regression                                |
+|      |       | Programming: papaja                                               |
+
+---
+
+# Schedule
+
+| Week |  Date |                   Topic                   |
+| :--: | :---: | :---------------------------------------- |
+|      | 03/13 | **Spring break**                          |
+|  9   | 03/20 | Stats: General Linear Model               |
+|      |       | Programming: modeling tips and tricks     |
+|  10  | 03/27 | Stats: General Linear Model               |
+|      |       | Programming: modeling tips and tricks     |
+|  11  | 04/03 | **Exam**                                  |
+|  12  | 04/10 | Stats: Generalized Linear Model           |
+|      |       | **Online presentations due**              |
+|  13  | 04/17 | Stats: Generalized Linear Model           |
+|      |       | **Online presentation comments due**      |
+|  14  | 04/24 | Research project presentations, residuals |
+|  15  | 05/01 | Reading day                               |
+|  16  | 05/?? | Final exam day (Projects due)             |
+
+---
+class: title-slide-final, middle
+background-image: url(https://github.com/jvcasillas/ru_xaringan/raw/master/img/logo/ru_shield.png)
+background-size: 55px
+background-position: 9% 15%
+
+# Data Science for Linguists
+
+## www.jvcasillas.com/ru_teaching/ru_spanish_589/589_01_s2018/
+
+### Save the link to the website in your favorites
+
+More ways to contact me:  
+
+|                                                                                                            |                                   |
+| :--------------------------------------------------------------------------------------------------------- | :-------------------------------- |
+| &lt;a href="mailto:joseph.casillas@rutgers.edu"&gt;.RUred[&lt;i class="fa fa-paper-plane fa-fw"&gt;&lt;/i&gt;]               | joseph.casillas@rutgers.edu       |
+| &lt;a href="http://twitter.com/jvcasill"&gt;.RUred[&lt;i class="fa fa-twitter fa-fw"&gt;&lt;/i&gt;]                          | @jvcasill                         |
+| &lt;a href="http://github.com/jvcasillas"&gt;.RUred[&lt;i class="fa fa-github fa-fw"&gt;&lt;/i&gt;]                          | @jvcasillas                       |
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://www.jvcasillas.com/ru_xaringan/js/ru_xaringan.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

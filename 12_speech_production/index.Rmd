@@ -1,0 +1,254 @@
+---
+title   : "Research Methods: Open Science and Reproducible Research in Linguistics"
+subtitle: "Speech production"
+author  : "Joseph V. Casillas, PhD"
+date    : "Rutgers University</br>Spring 2019</br>Last update: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: assets
+    css: ["hygge", "rutgers", "rutgers-fonts"]
+    nature:
+      beforeInit: ["https://www.jvcasillas.com/ru_xaringan/js/ru_xaringan.js", "https://platform.twitter.com/widgets.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "../assets/partials/header.html"
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r, libs, echo=F, message=F, warning=F}
+library(knitr)
+```
+
+class: middle, center
+
+# What is speech production?
+
+# How do we study speech production?
+
+# What is the purpose of studying speech production?
+
+---
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/linguistics/gifs/vocal_apparatus.gif)
+background-size: contain
+background-position: 220% 50%
+class: middle
+
+# 4 phases of speech production
+
+.big[
+- Respiration
+
+- Phonation
+
+- Resonance
+
+- Articulation
+]
+
+---
+
+# Respiration
+
+.big[
+- It's just breathing
+
+- The power supply of speech
+
+- 2 types: 
+
+    - Inhalation: air is pulled into the lungs by contracting the diaphragm
+
+    - Exhalation: air is pushed out of the lungs by relaxing the diaphragm
+]
+
+---
+class: middle, center
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/rUVMok4Qp-Y?start=87" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nJuFmyXeHkA?start=25" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+
+# Phonation
+
+.big[
+- Air is pushed out of the lungs
+
+- Passes through the glottis (the space between the vocal folds)
+
+- Rapid air movement causes vibration of the vocal folds
+
+- The vibrating vocal folds produce voice sounds and control...
+
+    - Pitch: the frequency (F0) at which the vocal folds vibrate
+
+    - Loudness: the intensity (dB) of the sound
+
+    - Quality: sound quality (timbre) of the voice (voiceless, breathy, modal, creaky, etc.)
+]
+
+---
+class: center, middle
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VbpvVPTe2TI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+
+# Resonance
+
+.big[
+- Process by which the basic product of phonation is enhanced in timbre/intensity
+
+- Enhancement is created when sound passes through air-filled cavities 
+
+    - pharynx
+    - nasopharynx
+    - nasal cavity
+    - oral cavity
+
+- We can manipulate the resonance chambers to produce different timbre/intensity
+]
+
+---
+class: center, middle
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/C-Bn70PpbrM?start=129" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+---
+
+# Articulation
+
+.big[
+- The phonated voice is manipulated by the articulators creating distinct sounds 
+- The sounds are then arranged into comprehensible words
+- The articulators can be passive or active
+    - Lips
+    - Teeth
+    - Alveolar Ridge
+    - Hard Palate
+    - Soft Palate (also called the velum)
+    - Tongue
+    - Mandible
+    - Uvula 
+    - Epiglottis 
+]
+
+---
+class: middle, center
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/a_t7M6v7BOY?start=69" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+
+# Research methods in speech production
+
+### Common
+
+.big[
+- Shadowing/delayed repetition
+
+- Reading
+
+- Picture naming
+]
+
+Problem: lab speech
+
+--
+
+Bigger problem: reduced speech
+
+---
+
+<iframe src="https://nwarner.faculty.arizona.edu/" style="border:none;" height="600" width="700"></iframe>
+
+.footnote[https://nwarner.faculty.arizona.edu/content/6]
+
+---
+background-image: url(https://cdn.uanews.arizona.edu/s3fs-public/styles/2015_story_body_aspect_ratio_switcher/public/story-images/natashawarner.jpg?itok=Z0MCSxBV)
+background-size: 300px
+background-position: 99% 50%
+
+# Reduced speech
+
+.pull-left[
+
+.big[
+- We typically shorten speech by eliding segments, syllables, reducing vowel quality, etc. 
+
+- To truly understand speech production (and perception) we need to study normal (reduced) speech
+
+- Dr. Natasha Warner to the rescue
+]
+]
+
+---
+background-image: url(https://pbs.twimg.com/media/DjOC58yXsAA1K6L.jpg:large)
+background-size: 400px
+background-position: 98% 50%
+
+# Eliciting reduced speech
+
+### Phone-a-friend technique
+
+.pull-left[
+.big[
+- Purpose: elicit natural, spontaneous speech in the lab
+]
+]
+
+---
+
+background-image: url(https://www.butler.edu/sites/default/files/soundbooth.jpg), url(https://cdn3.volusion.com/ocdyz.qurhw/v/vspfiles/photos/NC-8-2.jpg?1534360577)
+background-size: 400px, 400px
+background-position: 20% 50%, 90% 50%
+
+---
+class: title-slide-section-grey, middle
+
+# The participant calls a close friend of family member
+
+# They are instructed to talk for 10-15 minutes
+
+# Can (and do) talk about anything they want
+
+---
+class: title-slide-section-grey, middle
+
+# **Pros**  
+
+## Results in beautiful reduced speech (like the examples on Dr. Warner's website)
+
+## Almost completely removes concerns about "lab speech"
+
+--
+
+# **Cons**  
+
+## Trade off with experimental control 
+
+## Unwanted personal information?
+
+---
+class: title-slide-final, middle
+background-image: url(https://github.com/jvcasillas/ru_xaringan/raw/master/img/logo/ru_shield.png), url(https://octodex.github.com/images/femalecodertocat.png)
+background-size: 55px, 120px
+background-position: 9% 15%, 89% 15%
+
+# Getting help
+
+## If you have problems with github 
+## ask for help on slack
+
+### You can find some very basic tutorials related to 
+### R, RStudio, RMarkdown, GitHub, and Slack [here][here]
+
+[here]: http://www.jvcasillas.com/ru_teaching/ru_spanish_589/589_01_s2018/sources/tuts/index.html

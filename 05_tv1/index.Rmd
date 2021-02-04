@@ -1,0 +1,767 @@
+---
+title   : "Research Methods: Open Science and Reproducible Research in Linguistics"
+subtitle: "Welcome to the tidyverse I: Standards and plots"
+author  : "Joseph V. Casillas, PhD"
+date    : "Rutgers University</br>Spring 2019</br>Last update: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: assets
+    css: ["hygge", "rutgers", "rutgers-fonts"]
+    nature:
+      beforeInit: ["https://www.jvcasillas.com/ru_xaringan/js/ru_xaringan.js", "https://platform.twitter.com/widgets.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "../assets/partials/header.html"
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r, load-packages, echo=F, warning=F, message=F}
+library(tidyverse)
+```
+
+background-color: black
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/rstats/memes/os_heartbreak.png)
+background-size: contain
+
+---
+background-color: black
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/general/memes/sucking1.png)
+background-size: contain
+
+---
+background-color: black
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/general/memes/draw_owl.png)
+background-size: contain
+
+---
+class: title-slide-section-grey, center, middle
+
+# Coding standards
+
+(and some other important stuff)
+
+---
+
+# Coding standards
+
+### Comments
+
+--
+
+- You ~~should~~ have to comment your code
+
+--
+
+- While you are doing an analysis you feel like you know everything about your 
+data. The logic of every step you take makes sense and is fresh in your mind.
+
+--
+
+- 6 months from now you will not remember any of that
+
+--
+
+- It is imperative that you obsessively comment your code
+
+--
+
+- Think of it as leaving little post-it notes in your script that help you 
+remember your train of thought
+
+--
+
+- It provides a way to time stamp your progress
+
+--
+
+- It allows you to logically divide a script into sections
+
+--
+
+- It allows others to understand your code
+
+---
+
+# Coding standards
+
+### Comments
+
+- In R, comments are any characters that follow **\#** on the same line
+
+--
+
+.pull-left[
+
+```{r, comments-example-1}
+# This is a comment
+
+# You can put comments above your code
+x <- 2 # or next to it
+
+x^2 # x squared
+```
+
+]
+
+--
+
+.pull-right[
+
+```{r, comments-example-2, fig.retina=2, fig.height=3}
+# Fit a model for mpg as a function of drat
+mod <- lm(mpg ~ drat, data = mtcars)
+
+# Plot it
+ggplot(mtcars, aes(x = drat, y = mpg)) + 
+    geom_point() + 
+    geom_abline(intercept = coef(mod)[1], slope = coef(mod)[2])
+```
+]
+
+---
+class: title-slide-section-grey, center, middle
+
+<blockquote align='center' class="twitter-tweet" data-lang="de">
+<a href="https://twitter.com/juliafstrand/status/1097598546931527684"></a>
+</blockquote>
+
+---
+class: title-slide-section-grey
+
+# Examples
+
+---
+background-color: black
+background-image: url(./assets/img/comments01.png)
+background-size: contain
+
+---
+background-color: black
+background-image: url(./assets/img/comments02.png)
+background-size: contain
+
+---
+background-color: black
+background-image: url(./assets/img/comments03.png)
+background-size: contain
+
+---
+background-color: black
+background-image: url(./assets/img/comments04.png)
+background-size: contain
+
+---
+background-color: black
+background-image: url(./assets/img/comments05.png)
+background-size: contain
+
+---
+class: title-slide-section-grey, middle, center
+
+# Variable naming conventions
+
+---
+
+# Coding standards
+
+### Variable naming conventions
+
+.pull-left[
+
+- Similar to project/file/folder naming conventions
+
+- Use meaningful names
+
+- Programming language-specific prescriptivism
+
+- Avoid caps and periods
+
+- Use \_ for separating meaningful words
+
+]
+
+--
+
+.pull-right[
+
+.large[Ex. from R4DS]
+
+```
+i_use_snake_case
+otherPeopleUseCamelCase
+some.people.use.periods
+And_aFew.People_RENOUNCEconvention
+```
+
+.small[
+**My suggestion**: Use `snake_case` for everything (i.e., naming objects in R, columns in excel, etc.). You'll see why later...
+]
+
+]
+
+
+---
+
+# Coding standards
+
+### Space
+
+- Unlike when naming projects, folders, files, and variables, it is advisable to leave white space in some places in your scripts to make them more readable
+
+- In general it is good practice to leave a single space before and after arguments in functions and when assigning objects
+  - .red[Meh]: `x<-2`
+  - .blue[Better]: `x <- 2`
+
+--
+  - .red[Meh]: `lm(mpg~drat,data=mtcars)`
+  - .blue[Better]: `lm(mpg ~ drat, data = mtcars)`
+
+--
+
+- This is also true for markdown syntax
+  - .red[Meh]: `#Introduction`
+  - .blue[Better]: `# Introduction`
+
+---
+
+
+
+
+
+
+background-color: black
+background-image: url(https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/tidyverse.png), url(https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/ggplot2.png)
+background-size: 500px, 250px
+background-position: 50% 50%, 5% 50%
+
+---
+class: title-slide-section-grey, center, middle
+
+# Data visualization 101
+
+.big[Plotting with `ggplot`]
+
+---
+
+# Data visualization 101
+
+### Basic plot types
+
+.large[
+
+.pull-left[
+
+- Scatterplots
+
+- Bargraph
+
+- Boxplots
+
+- Point estimate + spread
+
+]
+
+]
+
+--
+
+.pull-right[
+
+- Imagine we are interested in learning more about gas mileage. 
+
+- We have the `mtcars` dataset that will allow us to look at miles per gallon 
+(**mpg**), engine displacement (**disp**), and transmission type (**am**)
+
+- **mpg** and **disp** are continuous variables, **am** is categorical
+
+]
+
+
+---
+
+# Data visualization 101
+
+### Scatterplot
+
+- When you have two continuous variables
+
+```{r, scatterplot-ex, fig.retina=2, echo=F, fig.height=5, fig.width=10, fig.align='center'}
+mtcars %>%
+  ggplot(., aes(x = disp, y = mpg, fill = factor(am))) + 
+    geom_point(pch = 21, size = 2)  + 
+    scale_fill_brewer(palette = "Set2", name = '', 
+                      labels = c('Automatic', 'Manual')) + 
+    theme_grey(base_size = 18, base_family = 'Times')
+```
+
+???
+
+```
+mtcars %>%
+  ggplot(., aes(x = disp, y = mpg, fill = factor(am))) + 
+    geom_point(pch = 21, size = 2)  + 
+    scale_fill_brewer(palette = "Set2", name = '', 
+                      labels = c('Automatic', 'Manual')) + 
+    theme_grey(base_size = 18, base_family = 'Times')
+```
+
+---
+
+# Data visualization 101
+
+### Bargraph
+
+- Please never make a bargraph
+
+```{r, bargraph-ex, fig.retina=2, echo=F, fig.height=5, fig.width=10, fig.align='center'}
+mtcars %>%
+  group_by(am) %>% 
+  summarize(mean_mpg = mean(mpg)) %>% 
+  ggplot(., aes(x = factor(am), y = mean_mpg, fill = factor(am))) + 
+    geom_bar(stat = 'identity') + 
+    ylim(0, 40) + 
+    xlab('') + 
+    scale_x_discrete(breaks = c(0, 1), labels = c('Automatic', 'Manual')) + 
+    scale_fill_brewer(palette = "Set2", name = '', 
+                      labels = c('Automatic', 'Manual')) + 
+    theme_grey(base_size = 18, base_family = 'Times')
+```
+
+???
+
+```
+mtcars %>%
+  group_by(am) %>% 
+  summarize(mean_mpg = mean(mpg)) %>% 
+  ggplot(., aes(x = factor(am), y = mean_mpg, fill = factor(am))) + 
+    geom_bar(stat = 'identity') + 
+    ylim(0, 40) + 
+    xlab('') + 
+    scale_x_discrete(breaks = c(0, 1), labels = c('Automatic', 'Manual')) + 
+    scale_fill_brewer(palette = "Set2", name = '', 
+                      labels = c('Automatic', 'Manual')) + 
+    theme_grey(base_size = 18, base_family = 'Times')
+```
+
+---
+background-color: black
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/rstats/memes/rstats_bargraphs.png)
+background-size: contain
+background-position: 100% 50%
+
+# Data visualization 101
+
+### Bargraph
+
+---
+
+# Data visualization 101
+
+### Boxplot (box and whisker plot)
+
+- Better option than bargraph
+
+```{r, boxplot-ex, fig.retina=2, echo=F, fig.height=5, fig.width=10, fig.align='center'}
+mtcars %>%
+  ggplot(., aes(x = factor(am), y = mpg, fill = factor(am))) + 
+    geom_boxplot() + 
+    ylim(0, 40) + 
+    xlab('') + 
+    scale_x_discrete(breaks = c(0, 1), labels = c('Automatic', 'Manual')) + 
+    scale_fill_brewer(palette = "Set2", name = '', 
+                      labels = c('Automatic', 'Manual')) + 
+    theme_grey(base_size = 18, base_family = 'Times')
+```
+
+???
+
+```
+mtcars %>%
+  ggplot(., aes(x = factor(am), y = mpg, fill = factor(am))) + 
+    geom_boxplot() + 
+    ylim(0, 40) + 
+    xlab('') + 
+    scale_x_discrete(breaks = c(0, 1), labels = c('Automatic', 'Manual')) + 
+    scale_fill_brewer(palette = "Set2", name = '', 
+                      labels = c('Automatic', 'Manual')) + 
+    theme_grey(base_size = 18, base_family = 'Times')
+```
+
+---
+background-color: black
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/rstats/memes/rstats_iqr.png)
+background-size: contain
+
+---
+
+# Data visualization 101
+
+### Point estimate + spread
+
+- Point estimate can be mean, median, mode, 
+- Spread can be SD, SE, 95% CI, etc.
+
+```{r, point-estimate-ex, fig.retina=2, echo=F, fig.height=5, fig.width=10, fig.align='center'}
+mtcars %>%
+  ggplot(., aes(x = factor(am), y = mpg, fill = factor(am))) + 
+    stat_summary(fun.data = mean_sdl, geom = 'pointrange', pch = 21, 
+                 size = 1.5) + 
+    ylim(0, 40) + 
+    xlab('') + 
+    scale_x_discrete(breaks = c(0, 1), labels = c('Automatic', 'Manual')) + 
+    scale_fill_brewer(palette = "Set2", name = '', 
+                      labels = c('Automatic', 'Manual')) + 
+    theme_grey(base_size = 18, base_family = 'Times')
+```
+
+???
+
+```
+mtcars %>%
+  ggplot(., aes(x = factor(am), y = mpg, fill = factor(am))) + 
+    stat_summary(fun.data = mean_sdl, geom = 'pointrange', pch = 21, 
+                 size = 1.5) + 
+    ylim(0, 40) + 
+    xlab('') + 
+    scale_x_discrete(breaks = c(0, 1), labels = c('Automatic', 'Manual')) + 
+    scale_fill_brewer(palette = "Set2", name = '', 
+                      labels = c('Automatic', 'Manual')) + 
+    theme_grey(base_size = 18, base_family = 'Times')
+```
+
+
+---
+class: title-slide-section-grey, center, middle
+
+# What you need to know
+
+.big[A grammar of graphics]
+
+---
+
+# ggplot2
+
+### Overview
+
+- Written by Hadley Wickham when he was a graduate student at Iowa State
+
+- Automatically deals with spacings, text, titles but also allows you to annotate by "adding"
+
+- Plots are built up in layers 
+
+- Plot the data, overlay a summary, meta data and annotation
+
+---
+
+# ggplot2
+
+### Components
+
+- Works with a dataframe
+
+- aesthetic mappings: how data are mapped to color, size
+
+- geoms: geometric objects like points, lines, shapes
+
+- stats: statistical transformations
+
+- facets: for conditional plots
+
+---
+
+# ggplot2
+
+### It starts with data
+
+- We will continue using the `mtcars` dataframe
+
+- Fire up RStudio, load the `tidyverse` and take a look at `mtcars`
+
+- Try using `glimpse(mtcars)`, , `head(mtcars)`, `dim(mtcars)`, and `summary(mtcars)`
+
+- What kind of information did you learn about the dataframe?
+
+---
+
+# ggplot2
+
+### It starts with data
+
+```{r, mtcars-explore1}
+glimpse(mtcars)
+dim(mtcars)
+```
+
+---
+
+# ggplot2
+
+### It starts with data
+
+```{r, mtcars-explore2}
+head(mtcars, 15)
+```
+
+---
+
+# ggplot2
+
+### It starts with data
+
+```{r, mtcars-explore3}
+summary(mtcars)
+```
+
+---
+
+# ggplot2
+
+### It starts with data
+
+- We will start all of our plots in the same way... using the dataframe and 
+the pipe operator (**%>%**) like this: 
+
+--
+
+```{r, pipe, eval=FALSE}
+# Call dataframe and 'pipe' into ggplot function
+mtcars %>%  #<<
+  ggplot(., )
+```
+
+--
+
+- Notice that I have commented my code
+
+- The pipe operator sends whatever is on the left of the pipe (`mtcars`) to whatever is on the right side (`ggplot`)
+
+- Specifically, it sends whatever is on the left to the following **.**
+
+- As is, this code won't do anything yet
+
+---
+
+# ggplot2
+
+### Aesthetics (aes)
+
+- aesthetic mappings: how data are mapped to color, size, and **axis**
+- Let's update our code: 
+
+```{r, aes-ex, fig.show='hide'}
+# Call dataframe and 'pipe' into ggplot function
+# Add aesthetic mapping to x and y axis
+mtcars %>%  
+  ggplot(., aes(x = disp, y = mpg)) #<<
+```
+
+--
+
+```{r, ref.label='aes-ex', echo=F, fig.retina=2, fig.align='center', fig.height=3.25, fig.width=8}
+```
+
+---
+
+# ggplot2
+
+### Geometric objects (geom_)
+
+- Whenever you want to make a plot you have to think about what kind of geometric object makes sense for your needs. What do we need here?
+
+--
+
+```{r, geom-ex, fig.show='hide'}
+# Call dataframe and 'pipe' into ggplot function
+# Add aesthetic mapping to x and y axis
+# Add geometric object (geom_point)
+mtcars %>%  
+  ggplot(., aes(x = disp, y = mpg)) + # We 'add' a layer to the plot
+    geom_point() #<<
+```
+
+--
+
+```{r, ref.label='geom-ex', echo=F, fig.retina=2, fig.align='center', fig.height=3.25, fig.width=8}
+```
+
+---
+
+# ggplot2
+
+### Geometric objects (geom_)
+
+- There are many types of geoms
+  - `geom_point()`
+  - `geom_smooth()`
+  - `geom_hist()`
+  - `geom_bar()`
+  - `geom_boxplot()`
+  - etc. 
+
+- Exercise
+  - Recall that `mtcars` has a lot of variables (see `glimpse(mtcars)`)
+  - Try swapping other variables for x and y
+  - Add a smoother to the plot (`geom_smooth()`)
+  - Add more aesthetics (try `color` and `shape`). What happens?
+  - Add a geom to make a boxplot
+
+---
+
+# ggplot2
+
+### Statistical transformations (stat_)
+
+- We can use the `stat_summary()` function to calculate a value and overlay it 
+on the plot
+
+.pull-left[
+
+```{r, 'stat-sum-ex', echo=T, eval=F}
+mtcars %>%
+  ggplot(., aes(x = am, y = mpg)) + 
+    stat_summary(fun.data = mean_sdl, 
+                 geom = 'pointrange')
+```
+
+]
+
+
+.pull-right[
+
+```{r, ref.label='point-estimate-ex', fig.retina=2, echo=F, fig.height=5, fig.width=10, fig.align='center'}
+```
+
+]
+
+---
+
+# ggplot2
+
+### Faceting
+
+- What about when we want to see more factors at once?
+- For example, what if we want to see **mpg** as a function of **am** and **cyl**?
+
+--
+
+#### Solution 1a
+
+.pull-left[
+
+```{r, facets-ex, fig.show='hide'}
+mtcars %>% 
+  ggplot(., aes(x = am, y = mpg)) + 
+    stat_summary(fun.data = mean_sdl, 
+                 geom = 'pointrange') + 
+    facet_grid(. ~ cyl) #<<
+```
+
+]
+
+.pull-right[
+
+```{r, ref.label='facets-ex', fig.retina=2, echo=F, fig.height=3.5, fig.width=6}
+```
+
+]
+
+---
+
+# ggplot2
+
+### Faceting
+
+- What about when we want to see more factors at once?
+- For example, what if we want to see **mpg** as a function of **am** and **cyl**?
+
+#### Solution 1b
+
+.pull-left[
+
+```{r, facets-ex2, fig.show='hide'}
+mtcars %>% 
+  ggplot(., aes(x = am, y = mpg)) + 
+    stat_summary(fun.data = mean_sdl, 
+                 geom = 'pointrange') + 
+    facet_grid(cyl ~ .) #<<
+```
+
+]
+
+.pull-right[
+
+```{r, ref.label='facets-ex2', fig.retina=2, echo=F, fig.height=3.5, fig.width=6}
+```
+
+]
+
+---
+
+# ggplot2
+
+### Faceting
+
+- What about when we want to see more factors at once?
+- For example, what if we want to see **mpg** as a function of **am** and **cyl**?
+
+#### Solution 2
+
+.pull-left[
+
+```{r, shapes-ex, fig.show='hide'}
+mtcars %>% 
+  ggplot(., aes(x = factor(am), y = mpg, 
+                shape = factor(cyl))) +  #<<
+    stat_summary(fun.data = mean_sdl, 
+                 geom = 'pointrange', 
+                 position = position_dodge(0.5))
+```
+]
+
+.pull-right[
+
+```{r, ref.label='shapes-ex', fig.retina=2, echo=F, fig.height=3.5, fig.width=6}
+```
+
+]
+
+---
+
+# More exercises
+
+### Using `mtcars`, create the following
+
+- a boxplot with a variable mapped to the `fill` aesthetic
+
+- a boxplot with a variable mapped to the `color` aesthetic and a horizontal facet
+
+- a scatterplot with a regression line (see `?geom_smooth`)
+
+- a scatterplot with a regression line (see `?geom_smooth`) and a categorical factor (try the aesthetic `shape`)
+
+- a histogram of `mpg`
+
+- What does `geom_violin()` do? What geom can it replace?
+
+---
+class: title-slide-final, middle
+background-image: url(https://github.com/jvcasillas/ru_xaringan/raw/master/img/logo/ru_shield.png), url(https://www.r-project.org/Rlogo.png)
+background-size: 55px, 100px
+background-position: 9% 15%, 89% 15%
+
+# Getting help
+
+## If you have problems using ggplot2
+## ask for help in the slack channel
+
+### You can find some very basic tutorials related to 
+### plotting in R [here][here]
+
+[here]: http://www.jvcasillas.com/base_lattice_ggplot/

@@ -1,0 +1,241 @@
+---
+title   : "Research Methods: Open Science and Reproducible Research in Linguistics"
+subtitle: " Communicating/sharing II: Literate programming with knitr and papaja"
+author  : "Joseph V. Casillas, PhD"
+date    : "Rutgers University</br>Spring 2019</br>Last update: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: assets
+    css: ["hygge", "rutgers", "rutgers-fonts"]
+    nature:
+      beforeInit: ["https://www.jvcasillas.com/ru_xaringan/js/ru_xaringan.js", "https://platform.twitter.com/widgets.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "../assets/partials/header.html"
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r, libs, echo=F, message=F, warning=F}
+library(knitr)
+library(tidyverse)
+```
+
+class: title-slide-section-grey, middle
+
+# Writing reproducible scientific reports with papaja
+
+---
+
+# papaja
+
+### Overview
+
+- When publishing you have to adhere to the standards of the journal
+
+- This is a pain in the neck
+
+- Journals in Psychology use APA format and accept LaTeX, PDF, word, 
+and other file formats
+
+- Most journals in linguistics accept (require) APA format and usually 
+only .docx (word) files (i.e., SSLA)
+
+- If you ~~hate~~ dislike word this is annoying
+
+---
+
+# papaja
+
+### What is papaja?
+
+- An R package that formats documents (pdf, .docx) in APA format
+- Basically it provides a template and helper functions for academic 
+writing
+- It also provides templates for revision response letters
+
+### Purpose?
+
+- Simplify paper formatting
+- The idea is that you don't have to worry about the little things 
+so you can 'just write'
+- Because it uses RMarkdown you can integrate r code and create 
+reproducible reports
+
+---
+
+# papaja
+
+### Why should I use it?
+
+- Obvious benefits of using RMarkdown (reproducibility, flexibility, integration with github)
+- Fast, easy
+- Pandoc citations
+  1. Create a .bib file with references (more on this later)
+  2. Automatically generate references section in APA format
+- Pre-prints
+
+--
+
+### How does it work?
+
+- Install papaja
+- Open new template
+- Write and knit
+- If you know RMarkdown, you know papaja
+
+---
+class: title-slide-section-grey, middle
+
+# A simple example
+
+---
+background-image: url(./assets/img/papaja_1.png)
+background-size: 400px
+background-position: 99% 50%
+
+# Exercise I 
+
+- If you haven't already, install `papaja`:  
+`remotes::install_github("crsh/papaja")`
+- (Probably not necessary but...) restart RStudio
+--
+
+- Click the new file icon (white square with a green ".green[+]")
+- Select `R Markdown...` > `From template` > `APA article (6th edition)`
+- A template will open automatically. Inspect the file.  
+What is familiar? What is different?
+--
+
+- Save the file in `manuscript` and click "Knit" (probably get an error)
+--
+
+- Look for this section of the YAML front matter...  
+
+```
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_word
+---
+```
+
+- change **papaja::apa6_pdf** to .green[papaja::apa6_word] and knit
+
+--
+
+.pull-left[
+
+- Make changes to the text and re-Knit
+- Add r chunks 
+  1. with simple math (i.e., 2 + 2) 
+  2. with a plot using `ggplot2`
+
+]
+
+--
+
+.pull-right[
+</br>
+- Open and inspect the .bib file
+- Try to cite it in the text and re-Knit
+
+]
+
+
+---
+class: title-slide-section-grey, middle
+
+# An advanced example
+
+---
+
+# Child and parent documents
+
+- Go to https://github.com/jvcasillas/dpbe_l2_replication
+
+- Inspect the `docs` folder, then the `manuscript` folder
+
+--
+
+- Click on `master.Rmd` and inspect the body of the document. How is it 
+different from what we have already seen?
+
+--
+
+- Go back and open the directory `includes`. Inspect the contents. 
+
+--
+
+- Specifically, navigate to the `sections` directory. Open some of the files. 
+
+--
+
+#### **Take away**: you can use 'child documents' to break up a large manuscript
+
+- the 'parent' or master document calls the child documents
+- the output is the same... a single word/pdf/html document
+- works well with dissertations (each child is a chapter)
+- useful when distractions are an issue
+
+---
+class: title-slide-section-grey, middle
+
+# More about knitr
+
+---
+
+# Exercise II
+
+### knitr
+
+- Go back to the `papaja` document we created before
+- Create knitr code chunks and try the following commands (in different chunks). **Remember** you should always name your chunks!
+
+
+.pull-left[
+Commands
+
+- `echo`: logical (TRUE/FALSE)
+- `eval`: logical (TRUE/FALSE)
+- `results`: character ('hide', 'asis', etc.)
+- figure options
+  - `fig.retina`: numeric (1 or 2)
+  - `fig.width`: numeric
+  - `fig.height`: numeric
+  - `fig.align`: character ('left', 'right', 'center')
+]
+
+--
+<br><br>
+.pull-right[
+- hide/show code
+- evaluate/ignore code
+- format for code output
+- figure ouptions
+  - normal or hi-def images
+  - figure width in inches
+  - figure height in inches
+  - alignment of figure (most useful in html files)
+]
+
+---
+class: title-slide-final, middle
+background-image: url(https://github.com/jvcasillas/ru_xaringan/raw/master/img/logo/ru_shield.png), url(https://www.r-project.org/Rlogo.png)
+background-size: 55px, 100px
+background-position: 9% 15%, 89% 15%
+
+# Getting help
+
+## If you have problems getting or tidying your data
+## ask for help in the slack channel
+
+### You can find some very basic tutorials related to 
+### R, RStudio, RMarkdown, GitHub, and Slack [here][here]
+
+[here]: http://www.jvcasillas.com/ru_teaching/ru_spanish_589/589_01_s2018/sources/tuts/index.html

@@ -1,0 +1,25 @@
+---
+title: "osrrl slides"
+output: github_document
+---
+
+```{r, 'download-bib', echo=F}
+link <- "https://www.jvcasillas.com/syllabi/581/refs/bib/osrrl_refs.bib"
+
+download.file(link, 
+              destfile = here::here("assets", "bib", "osrrl_refs.bib"), 
+              method = "curl")
+```
+
+```{r, 'links-to-slides', echo=F, results='asis'}
+base <- "https://osrrl.github.io/slides/"
+slides <- c(
+  "01_getting_started", "02_reproducibility_crisis_vc1", 
+  "03_registered_reports_cs1", "04_reproducible_projects_vc2", "05_tv1", 
+  "06_tv2", "07_cs2", "09_vc3", "12_speech_production", 
+  "13_speech_perception", "14_rmd_websites")
+
+
+glue::glue("1. [{slides}]({base}{slides}/)")#[1:3]
+
+```

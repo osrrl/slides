@@ -1,0 +1,603 @@
+---
+title   : "Research Methods: Open Science and Reproducible Research in Linguistics"
+subtitle: "Reproducibility crisis<br>Version control I: github"
+author  : "Joseph V. Casillas, PhD"
+date    : "Rutgers University</br>Spring 2019</br>Last update: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: assets
+    css: ["hygge", "rutgers", "rutgers-fonts"]
+    nature:
+      beforeInit: ["https://www.jvcasillas.com/ru_xaringan/js/ru_xaringan.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "../assets/partials/header.html"
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r eval=FALSE, echo=FALSE}
+rmarkdown::render("./static/slides/02_reproducibility_crisis_vc1/index.Rmd")
+xaringan::inf_mr()
+```
+
+class: title-slide-section-grey, middle, center
+
+# .white[Do we know what we think we know?]
+
+---
+background-image: url(../assets/img/pensar2.png)
+background-size: 400px
+background-position: 90% 50%
+
+# A psychological paradox
+
+### We know 2 things
+
+#### The majority of published studies...
+
+1. ...include findings that are "statistically significant"
+
+--
+
+2. ...are underpowered due to low sample size<sup>1</sup>
+
+.footnote[<sup>1</sup>Chase & Chase 1976, Cohen 1962, Sedlmeier & Gigerenzer 1989]
+
+--
+
+.pull-left[
+.center[
+
+#### **What does this imply**? 
+
+#### **What is "significance"**?
+
+#### **What is power**?
+
+]
+]
+
+---
+background-image: url(https://i.imgflip.com/2sdkd6.jpg)
+background-size: contain
+background-position: 50% 50%
+background-color: black
+
+---
+background-image: url(https://static-19.sinclairstoryline.com/resources/media/a079367c-a58f-4130-b01b-5d5d320655d2-large16x9_genericcourtroomgavel.JPG?1531677910817)
+background-size: contain
+
+# .white[NHST]
+
+--
+
+.pull-left[
+.Large[.white[In a trial, the </br>
+.big[.yellow[.bold[null hypothesis]] (.yellow[H<sub>0</sub>])] </br> 
+is innocence.]]]
+
+--
+
+.footnote[
+.Large[
+.white[
+The objective is to see if the evidence .big[(**the data**)] contradicts this 
+hypothesis, supporting an .big[.bold[.green[alternative hypothesis]] (.green[H<sub>1</sub>])], guilt. 
+]
+]
+]
+
+---
+background-image: url(https://thehill.com/sites/default/files/styles/thumb_small_article/public/ginsburgruth_041017gn_lead.jpg?itok=TFxW052n)
+background-size: contain
+
+# .white[NHST]
+
+--
+
+.pull-left[
+.footnote[
+.big[
+.white[If there is no evidence, </br>the accused cannot be </br> found 
+guilty.]
+
+.white[We .big[**fail to reject** .yellow[.bold[H<sub>0</sub>]]].]
+]
+]
+]
+
+--
+
+.pull-right[
+.footnote[
+.big[
+.white[If there is evidence of guilt beyond a reasonable doubt, 
+the accused is found guilty.
+
+We .big[.bold[.lightgrey[reject] .yellow[H<sub>0</sub>]]].]
+]
+]
+]
+
+---
+class: middle
+background-color: black
+background-image: url(https://www.snopes.com/tachyon/2017/03/Ruth_Bader_Ginsburg_fb.jpg?resize=1200,630&quality=65)
+background-size: contain
+
+# .white[So what's a] .yellow[p-value].white[?]
+
+--
+
+### **p-value**: .white[the probability of obtaining </br>your data, if H<sub>0</sub> is TRUE.]
+
+--
+</br>
+
+# .white[...and "].yellow[significant].white["?]
+
+--
+
+### **Significance**: .white[obtaining a p-value below </br>an arbitrary threshold]
+
+---
+class: center, middle
+background-color: black
+
+# .lightgrey[High p-value: your data are likely with a true null.]
+
+# .lightgrey[Low p-value: your data are unlikely with a true null.]
+
+--
+
+.pull-left[
+# Low p-values do not tell you how likely your hypothesis is!
+]
+
+--
+
+.pull-right[
+# Low p-values are not "more significant" than high p-values!
+]
+
+---
+background-color: black
+background-image: url(https://larspsyll.files.wordpress.com/2014/07/i_do_not_think_it_significant_means_what_you_think_it_means.jpg)
+background-size: contain
+
+---
+class: middle
+background-color: black
+background-image: url(https://www.freepngimg.com/thumb/arnold_schwarzenegger/29411-8-arnold-schwarzenegger-file.png)
+background-size: contain
+background-position: 100% 50%
+
+# .white[What is] **power**.white[?]
+
+### .lightgrey[The probability of (correctly) rejecting] 
+### **H<sub>0</sub>** .lightgrey[when] .yellow[H<sub>1</sub>] .lightgrey[is true.] 
+
+---
+
+# Back to the paradox...
+
+### The majority of published studies...
+
+1. ...include findings that are "statistically significant"
+
+2. ...are underpowered due to low sample size
+
+--
+
+.center[
+### How can this be? 
+### If power is low, we are unlikely to correctly reject H<sub>0</sub> when H<sub>1</sub> is true. 
+]
+
+---
+background-image: url(https://mchankins.files.wordpress.com/2013/04/filedrawer1.jpg)
+background-size: contain
+
+---
+class: title-slide-section-grey, middle, center
+
+# The .Large["**file drawer problem**"] has contributed </br> to the creation of .big[.yellow[even bigger]] problems
+
+---
+
+# Reproducibility crisis in Psychological science
+
+### What is the Open Science Collaboration?
+
+### What is the reproducibility crisis?
+
+--
+
+- 100 prominent papers analyzed, only 39% could be replicated
+
+> "Scientists and journal editors are biased--consciously or not--in  
+> what they publish"
+
+--
+
+### What exactly is the concern? 
+
+--
+
+- Type I error
+
+---
+background-color: lightgrey
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/rstats/memes/rstats_type12_error1.png)
+background-size: contain
+
+---
+
+# Reproducibility crisis in Psychological science
+
+### Is it all type I error? (probably not)
+
+### p-hacking
+
+> refers to the many different decisions that researchers make during data 
+> collection, preparation, and analyses that maximize the chance of obtaining 
+> significant effects
+
+- p-hacking is a logical explanation for why we consistently see 
+underpowered studies that are statistically significant
+
+- p-hacking can turn any false hypothesis into one that has statistically significant support
+
+- "researcher degrees of freedom"
+
+- not necessarily done to be deceptive or manipulative
+
+---
+
+# Reproducibility crisis in Psychological science
+
+### Examples of p-hacking (from Le, 2018)
+
+- Collect data and doing exploratory analyses during data collection. If results are significant, stop collecting data; if not, continue until it becomes significant.
+
+- Collect data on several DVs, but only report results from the DVs that show significant effects. Similarly, create DVs in different ways (e.g., a subset of items) to maximize significant effects.
+
+- Running multiple tests and only reporting on those that yielded significant results.
+
+- If initial results do not show significant effects, re-run analyses with control variables or interaction terms, or doing subgroups analyses.
+
+- Eliminating data (e.g., “outliers” or particular demographic groups) in an attempt to find stronger results.
+
+- Designing an experiment with multiple conditions, but ignoring or collapsing conditions if analyses based on all conditions is not significant.
+
+- Run multiple experiments and only report those that “worked.”
+
+---
+
+# Reproducibility crisis in Psychological science
+
+### Harking
+
+- "hypothesizing after results are known" 
+
+- collect data 
+
+- do a wide range of exploratory analyses
+
+- "cherry pick" from those results and (mis)represent those as being derived from a priori hypotheses. 
+
+- This is also known as “data dredging” and “fishing” 
+
+- May seem surprising that this practice occurs, but is rather common and has even been recommended as the preferred way to frame a research project (e.g., Bem, 2002). 
+
+---
+background-image: url(./assets/img/osc_fig0.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/osc_fig1.png)
+background-size: contain
+
+---
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/teaching/gifs/cant_believe.gif)
+background-size: contain
+
+---
+class: middle, center
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0Rnq1NpHdmw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+---
+class: middle, center
+
+<iframe src="https://projects.fivethirtyeight.com/p-hacking/index.html?initialWidth=1024&childId=phacking&parentTitle=Science%20Isn’t%20Broken%20%7C%20FiveThirtyEight&parentUrl=https%3A%2F%2Ffivethirtyeight.com%2Ffeatures%2Fscience-isnt-broken%2F%23part1#part1" style="border:none;" height="600" width="100%"></iframe>
+
+---
+
+# So what?
+
+### Is psychology doomed? What does this mean for linguistics?
+
+--
+
+### What if your paper does not replicate? What does this mean for the authors?
+
+--
+
+> Boldness in Conjecture, Austerity in Refutation  
+> 
+> \- Karl Popper (*The Logic of Scientific Discovery*, 1935)
+
+--
+
+- Make risky predictions (boldness in conjecture) and then try to severely kill/disprove your theory (austerity in refutation)
+- Science cannot progress as long as you play it safe
+
+--
+
+### What is direct replication? Are there other types of replications?
+
+---
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/rstats/memes/os_replication_types.png)
+background-size: contain
+
+---
+class: title-slide-section-grey, middle, center
+
+# Do we know what we think we know? <br>(probably not)
+
+--
+
+.big[
+"**Innovation points out paths that are possible;  
+replication points out paths that are likely;  
+progress relies on both**" (OSC, 2015)
+]
+
+---
+background-image: url(./assets/img/gonzales_lotto_fig2.png)
+background-size: contain
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+class: title-slide-section-red
+background-image: url(https://octodex.github.com/images/daftpunktocat-thomas.gif), url(https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png)
+background-size: contain, 400px
+background-position: 100% 50%, 20% 85%
+
+# Version control I
+
+---
+background-image: url(https://octodex.github.com/images/puddle_jumper_octodex.jpg)
+background-size: 300px
+background-position: 90% 10%
+
+# Github
+
+### Motivation
+
+.large[
+
+- What is version control?
+
+- Why is it important? 
+
+- How do we do it (normally)? 
+
+]
+
+--
+
+box, onedrive, dropbox, googledrive
+
+---
+background-image: url(./assets/img/vc1_github_01.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_02.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_03.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_04.png)
+background-size: contain
+
+---
+background-image: url(https://octodex.github.com/images/hula_loop_octodex03.gif)
+background-size: 300px
+background-position: 90% 10%
+
+# Github
+
+### How do we do it for reproducible research? 
+
+--
+
+.big[
+- git
+
+- github
+
+- gitlab
+
+- bitbucket
+]
+
+---
+background-image: url(https://octodex.github.com/images/labtocat.png)
+background-size: 300px
+background-position: 90% 10%
+
+# Github
+
+### Metaphors and terminology
+
+- repo
+- commit
+- push
+- pull
+- pull request
+- fetch
+- fork
+- clone
+- issue
+
+---
+background-image: url(https://octodex.github.com/images/steroidtocat.png)
+background-size: 300px
+background-position: 90% 10%
+
+# Exercise I
+
+### Working online/forking
+
+- Fork the github_practice repo
+- Edit README.md
+- Commit changes (make a comment)
+- Submit pull request
+
+--
+- Add your definition of one of the terms in the glossary
+- Commit changes (make a comment)
+- Submit pull request
+
+---
+background-image: url(https://octodex.github.com/images/snowoctocat.png)
+background-size: 300px
+background-position: 90% 10%
+
+# Exercise II
+
+### Cloning
+
+- Clone the github_practice repo on to your computer
+
+--
+- Add a folder whose name is your last name (e.g. 'casillas') 
+- Create a README.md file using a text editor and put your   
+favorite link in the body
+- Save everything, commit the changes with an informative message
+- Push changes to your cloned repo
+- Check github to see if it worked
+
+--
+- Submit pull request
+- When everybody has finished, fetch changes
+
+---
+background-image: url(./assets/img/vc1_github_05.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_06.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_07.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_08.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_09.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_10.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_11.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_12.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_13.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_14.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_15.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_16.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/vc1_github_17.png)
+background-size: contain
+
+---
+background-image: url(https://octodex.github.com/images/socialite.jpg)
+background-size: contain
+
+---
+background-image: url(https://octodex.github.com/images/daftpunktocat-guy.gif)
+background-size: 300px
+background-position: 90% 10%
+
+# Exercise III
+
+### Research project
+
+- Join my RAP group 
+--
+(seriously... @rap-group)
+
+--
+
+- Fork and clone `dpbe_l2_replication`
+
+--
+
+- With a partner, find an L2 journal that allows replication studies    
+and include the link in the main README.md
+
+---
+layout:false
+class: title-slide-final, middle
+background-image: url(https://github.com/jvcasillas/ru_xaringan/raw/master/img/logo/ru_shield.png), url(https://cdn.freebiesupply.com/logos/large/2x/github-octocat-logo-png-transparent.png)
+background-size: 55px, 100px
+background-position: 9% 15%, 89% 15%
+
+# Getting help
+
+## If you have problems using github 
+## ask for help in the slack channel
+
+### You can find some very basic tutorials related to 
+### R, RStudio, RMarkdown, GitHub, and Slack [here][here]
+
+[here]: http://www.jvcasillas.com/ru_teaching/ru_spanish_589/589_01_s2018/sources/tuts/index.html

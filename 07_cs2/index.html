@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Research Methods: Open Science and Reproducible Research in Linguistics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Joseph V. Casillas, PhD" />
+    <link href="assets/remark-css/hygge.css" rel="stylesheet" />
+    <link href="assets/remark-css/rutgers.css" rel="stylesheet" />
+    <link href="assets/remark-css/rutgers-fonts.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/5235085b15.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Research Methods: Open Science and Reproducible Research in Linguistics
+## Communicating/sharing II: Literate programming with knitr and papaja
+### Joseph V. Casillas, PhD
+### Rutgers University</br>Spring 2019</br>Last update: 2019-03-06
+
+---
+
+
+
+
+
+
+
+class: title-slide-section-grey, middle
+
+# Writing reproducible scientific reports with papaja
+
+---
+
+# papaja
+
+### Overview
+
+- When publishing you have to adhere to the standards of the journal
+
+- This is a pain in the neck
+
+- Journals in Psychology use APA format and accept LaTeX, PDF, word, 
+and other file formats
+
+- Most journals in linguistics accept (require) APA format and usually 
+only .docx (word) files (i.e., SSLA)
+
+- If you ~~hate~~ dislike word this is annoying
+
+---
+
+# papaja
+
+### What is papaja?
+
+- An R package that formats documents (pdf, .docx) in APA format
+- Basically it provides a template and helper functions for academic 
+writing
+- It also provides templates for revision response letters
+
+### Purpose?
+
+- Simplify paper formatting
+- The idea is that you don't have to worry about the little things 
+so you can 'just write'
+- Because it uses RMarkdown you can integrate r code and create 
+reproducible reports
+
+---
+
+# papaja
+
+### Why should I use it?
+
+- Obvious benefits of using RMarkdown (reproducibility, flexibility, integration with github)
+- Fast, easy
+- Pandoc citations
+  1. Create a .bib file with references (more on this later)
+  2. Automatically generate references section in APA format
+- Pre-prints
+
+--
+
+### How does it work?
+
+- Install papaja
+- Open new template
+- Write and knit
+- If you know RMarkdown, you know papaja
+
+---
+class: title-slide-section-grey, middle
+
+# A simple example
+
+---
+background-image: url(./assets/img/papaja_1.png)
+background-size: 400px
+background-position: 99% 50%
+
+# Exercise I 
+
+- If you haven't already, install `papaja`:  
+`remotes::install_github("crsh/papaja")`
+- (Probably not necessary but...) restart RStudio
+--
+
+- Click the new file icon (white square with a green ".green[+]")
+- Select `R Markdown...` &gt; `From template` &gt; `APA article (6th edition)`
+- A template will open automatically. Inspect the file.  
+What is familiar? What is different?
+--
+
+- Save the file in `manuscript` and click "Knit" (probably get an error)
+--
+
+- Look for this section of the YAML front matter...  
+
+```
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_word
+---
+```
+
+- change **papaja::apa6_pdf** to .green[papaja::apa6_word] and knit
+
+--
+
+.pull-left[
+
+- Make changes to the text and re-Knit
+- Add r chunks 
+  1. with simple math (i.e., 2 + 2) 
+  2. with a plot using `ggplot2`
+
+]
+
+--
+
+.pull-right[
+&lt;/br&gt;
+- Open and inspect the .bib file
+- Try to cite it in the text and re-Knit
+
+]
+
+
+---
+class: title-slide-section-grey, middle
+
+# An advanced example
+
+---
+
+# Child and parent documents
+
+- Go to https://github.com/jvcasillas/dpbe_l2_replication
+
+- Inspect the `docs` folder, then the `manuscript` folder
+
+--
+
+- Click on `master.Rmd` and inspect the body of the document. How is it 
+different from what we have already seen?
+
+--
+
+- Go back and open the directory `includes`. Inspect the contents. 
+
+--
+
+- Specifically, navigate to the `sections` directory. Open some of the files. 
+
+--
+
+#### **Take away**: you can use 'child documents' to break up a large manuscript
+
+- the 'parent' or master document calls the child documents
+- the output is the same... a single word/pdf/html document
+- works well with dissertations (each child is a chapter)
+- useful when distractions are an issue
+
+---
+class: title-slide-section-grey, middle
+
+# More about knitr
+
+---
+
+# Exercise II
+
+### knitr
+
+- Go back to the `papaja` document we created before
+- Create knitr code chunks and try the following commands (in different chunks). **Remember** you should always name your chunks!
+
+
+.pull-left[
+Commands
+
+- `echo`: logical (TRUE/FALSE)
+- `eval`: logical (TRUE/FALSE)
+- `results`: character ('hide', 'asis', etc.)
+- figure options
+  - `fig.retina`: numeric (1 or 2)
+  - `fig.width`: numeric
+  - `fig.height`: numeric
+  - `fig.align`: character ('left', 'right', 'center')
+]
+
+--
+&lt;br&gt;&lt;br&gt;
+.pull-right[
+- hide/show code
+- evaluate/ignore code
+- format for code output
+- figure ouptions
+  - normal or hi-def images
+  - figure width in inches
+  - figure height in inches
+  - alignment of figure (most useful in html files)
+]
+
+---
+class: title-slide-final, middle
+background-image: url(https://github.com/jvcasillas/ru_xaringan/raw/master/img/logo/ru_shield.png), url(https://www.r-project.org/Rlogo.png)
+background-size: 55px, 100px
+background-position: 9% 15%, 89% 15%
+
+# Getting help
+
+## If you have problems getting or tidying your data
+## ask for help in the slack channel
+
+### You can find some very basic tutorials related to 
+### R, RStudio, RMarkdown, GitHub, and Slack [here][here]
+
+[here]: http://www.jvcasillas.com/ru_teaching/ru_spanish_589/589_01_s2018/sources/tuts/index.html
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://www.jvcasillas.com/ru_xaringan/js/ru_xaringan.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

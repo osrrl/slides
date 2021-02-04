@@ -1,0 +1,357 @@
+---
+title   : "Research Methods: Open Science and Reproducible Research in Linguistics"
+subtitle: "Createing RMarkdown website using blogdown"
+author  : "Joseph V. Casillas, PhD"
+date    : "Rutgers University</br>Spring 2019</br>Last update: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: assets
+    css: ["hygge", "rutgers", "rutgers-fonts"]
+    nature:
+      beforeInit: ["https://www.jvcasillas.com/ru_xaringan/js/ru_xaringan.js", "https://platform.twitter.com/widgets.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "../assets/partials/header.html"
+---
+
+class: title-slide-section-grey, middle
+
+# **PART I**
+
+### username.github.io
+
+---
+
+# **PART I**
+
+## Getting started
+
+### Create username.github.io repo
+
+- initiate w/ README
+- make public
+
+--
+
+### Open github desktop
+
+- clone username.github.io repo to desktop  
+(if you plan on using/keeping site then pick a better place)
+
+---
+
+# **PART I**
+
+## Getting started
+
+### Open RStudio
+
+- create new project
+- select username.github.io folder you just cloned
+
+--
+
+### Packages
+
+- Update all packages
+- Install "blogdown"
+
+---
+
+# **PART I**
+
+## Getting started
+
+### In RStudio
+
+- Create new .Rmd file
+- Name it index.Rmd
+- Delete everything except the yaml front matter
+- Type a message in the text (anything)
+- Save and knit
+
+### Commit and push
+
+- Select the "Git" pane, click "commit"
+- In new window select all files and stage them (make the check mark appear)
+- Type "initial commit" in the commit message box and click "commit"
+- Push changes to github
+
+---
+
+# **PART I**
+
+## Getting started
+
+### From github.com
+
+- Go to username.github.io repo
+- check to see it commits are there
+- Click on the "settings" tab
+- Scroll down to github pages section
+- You should see "You site is published at..."
+- Click on the link
+- This is your webpage
+
+---
+
+# **PART I**
+
+## Getting started
+
+### Details
+
+- free webhosting from github.com
+- this is the master of all masters
+- any repo you make with the Github Pages setting set to "master" will be
+	published from this website, i.e., username.github.io/REPONAME
+- We have already seen this with our xaringan presentations
+
+---
+class: title-slide-section-grey, middle
+
+# **PART II**
+
+### Blogdown
+
+---
+
+# **PART II**
+
+## Blogdown
+
+### From RStudio
+
+- type into the console: blogdown::install_hugo()
+- This will probably take awhile
+- After it finishes check for errors
+- type this into the console: blogdown::new_site()
+	- if you get an error, delete everything in your username.github.io folder (except the RStudio proj folder)
+
+---
+
+# **PART II**
+
+## Blogdown
+
+### Lithium
+
+- This is going to create an new website using the lithium theme
+- This theme is ugly, but...
+- Notice a few things...
+- You should have a template blogpost open
+- you get a preview in the Viewer pane
+- Look at the username.github.io folder and check out what it did
+- Go back to viewer pane and click the window/arrow icon to see site in web browser..  
+--
+have the basic idea? Ok...
+
+---
+
+# **PART II**
+
+## Blogdown
+
+### Changing themes
+
+- There are over 90 themes: https://themes.gohugo.io
+- Common themes for academic webpages
+	- https://github.com/kakawait/hugo-tranquilpeak-theme
+	- https://github.com/kishaningithub/hugo-creative-portfolio-theme
+	- https://github.com/devcows/hugo-universal-theme
+	- https://github.com/gcushen/hugo-academic (this is the theme I use)
+
+---
+
+<iframe src="https://sourcethemes.com/academic/" style="border:none;" height="600" width="1400"></iframe>
+
+.footnote[https://sourcethemes.com/academic/]
+
+---
+
+# **PART II**
+
+## Blogdown
+
+### Changing themes
+
+- Changing themes once you've started is difficult unless you burn the house down
+- Let's burn the house down
+	- delete everything in your username.github.io folder (except the RStudio proj folder)
+	- type this into the console: blogdown::new_site(theme = "gcushen/hugo-academic", theme_example = TRUE)
+- Explore the username.github.io folder, check the Viewer, expland to the web browser
+- Now you know how to create a site and select a theme
+
+---
+
+class: title-slide-section-grey, middle
+
+# **PART III** 
+
+### Your site
+
+---
+
+# **PART III** 
+
+### Your site
+
+- Create a new folder on your desktop (or near username.github.io) called "blogdown_source" 
+- Create a new RStudio project for "blogdown_source"
+- In the console: blogdown::new_site(theme = "gcushen/hugo-academic", theme_example = TRUE)
+- Close template RMarkdown file
+- Copy and paste: servr::daemon_stop(1)
+
+---
+
+# **PART III** 
+
+### Your site
+
+- Click the "Files" pane, open "config.toml"
+	- baseurl: type in the url of your site ("https://username.github.io/")
+	- publishDir: on the line below type the following...
+		publishDir = "../username.github.io"
+	- save and close "config.toml"
+- In console: blogdown::build_site()
+- Check username.github.io folder
+
+---
+
+# **PART III** 
+
+### Your site
+
+- Switch to username.github.io project
+- Click Git pane, commit all files, push changes
+- Check github.com to see if files were pushed
+- Go to your website
+- Yeah!!!
+
+---
+
+class: title-slide-section-grey, middle
+
+# **PART IV**
+
+### Customize your site
+
+---
+
+# **PART IV**
+
+### Customize your site
+
+- Work from blogdown_source project
+- blogdown::serve_site() (this will show live updates)
+- Change config.toml file first
+	- title = "Academic"
+- config/_default/params.toml
+	- color_theme = 
+	- sharing_image = 
+	- twitter = 
+	- logo = 
+	- email/phone/address etc. 
+
+---
+
+# **PART IV**
+
+### Customize your site
+
+- Content/author/admin/_index.md
+	- bio
+	- education
+	- interests, etc. 
+	- short bio (at bottom)
+- This is enough to get you started, here is some more to help you customize
+	- https://alison.rbind.io/post/up-and-running-with-blogdown/
+	- https://bookdown.org/yihui/blogdown/
+
+---
+
+class: title-slide-section-grey, middle
+
+# Summing up
+
+---
+
+# Summing up
+
+.big[
+- Reproduction crisis
+- Open science and reproducible research
+- Registered reports, pre-registration
+- Version control with git
+- Literate programming and reproducible documents/projects
+  - R 
+  - RStudio projects
+  - RMarkdown
+]
+
+---
+
+# Summing up
+
+.big[
+- Tidyverse
+  - coding
+  - plotting
+  - manipulating data
+- Dynamic documents for publication (papaja)
+- HTML presentations
+- Presenting stimuli using psychopy (offline/online)
+- Website and blogs using blogdown
+]
+
+---
+
+# Summing up
+
+.big[
+- Research pipeline
+  - Designing a project
+  - IRB
+  - Designing experiments
+  - Running experiments
+- Project oriented workflows
+- OSF
+  - Pre-registration
+  - Finding and evaluating open materials
+- Publishing
+  - Selecting a journal
+  - Manuscript preparation
+  - Collaborating in github
+  - Submitting a manuscript
+]
+
+---
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/teaching/gifs/rock_clap.gif)
+background-size: contain
+
+
+
+
+
+
+
+
+
+---
+class: title-slide-final, middle
+background-image: url(https://github.com/jvcasillas/ru_xaringan/raw/master/img/logo/ru_shield.png), url(https://octodex.github.com/images/femalecodertocat.png)
+background-size: 55px, 120px
+background-position: 9% 15%, 89% 15%
+
+# Getting help
+
+## If you have problems
+## ask for help on slack
+
+### You can find some very basic tutorials related to 
+### R, RStudio, RMarkdown, GitHub, and Slack [here][here]
+
+[here]: http://www.jvcasillas.com/ru_teaching/ru_spanish_589/589_01_s2018/sources/tuts/index.html

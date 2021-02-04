@@ -1,0 +1,1042 @@
+---
+title   : "Research Methods: Open Science and Reproducible Research in Linguistics"
+subtitle: "Welcome to the tidyverse II: Tidying and descriptives"
+author  : "Joseph V. Casillas, PhD"
+date    : "Rutgers University</br>Spring 2019</br>Last update: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: assets
+    css: ["hygge", "rutgers", "rutgers-fonts"]
+    nature:
+      beforeInit: ["https://www.jvcasillas.com/ru_xaringan/js/ru_xaringan.js", "https://platform.twitter.com/widgets.js"]
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:9"
+    includes:
+      in_header: "../assets/partials/header.html"
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r, libs, echo=F, message=F, warning=F}
+library(knitr)
+library(tidyverse)
+library(gt)
+library(untidydata)
+library(kableExtra)
+```
+
+```{r create-test-data, echo=F}
+my_data <- tribble(
+  ~id, ~group, ~height, ~weight, ~iq, ~age,
+  101,    "m",      75,     210, 110,   25,
+  102,    "m",      70,     190, 101,   22,
+  103,    "m",      65,     175, 104,   27,
+  104,    "m",      66,     178,  90,   25,
+  105,    "m",      68,     180,  98,   22,
+  106,    "f",      58,     145, 110,   22,
+  107,    "f",      60,     135, 106,   25,
+  108,    "f",      66,     140, 115,   29,
+  109,    "f",      69,     155, 103,   27,
+  110,    "f",      54,     120, 118,   31
+  )
+
+my_data_wide <- tribble(
+          ~id, ~pre_test, ~post_test, 
+  "101_m_ctr",        75,         85, 
+  "102_m_ctr",        70,         80, 
+  "103_m_ctr",        65,         75, 
+  "104_m_exp",        66,         76, 
+  "105_m_exp",        68,         78, 
+  "106_m_exp",        58,         68, 
+  "107_f_ctr",        60,         70, 
+  "108_f_ctr",        66,         76, 
+  "109_f_ctr",        69,         79, 
+  "110_f_exp",        54,         64, 
+  "111_f_exp",        88,         98, 
+  "112_f_exp",        44,         54
+  )
+
+```
+
+
+
+background-color: black
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/general/memes/sucking2.png)
+background-size: contain
+
+---
+background-color: black
+background-image: url(https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/tidyverse.png), url(https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/dplyr.png), url(https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/tidyr.png)
+background-size: 500px, 250px, 250px
+background-position: 50% 50%, 5% 50%, 95% 50%
+
+---
+class: title-slide-section-grey, middle, center
+background-image: url(https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/dplyr.png)
+background-size: contain
+
+---
+layout: true
+class: middle
+
+# **select** 
+
+# .blue[<u>columns</u>] .grey[of a dataframe] 
+
+# .grey[with]
+
+# .big[select()]
+
+---
+
+---
+background-image: url(./assets/img/select1.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/select2.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/select3.png)
+background-size: 350px
+background-position: 80% 50%
+
+---
+layout: false
+
+# select()
+
+.big[
+
+- You can select consecutive columns using "`:`" (try)
+
+- You can rename columns directly (new_name = old_name) 
+
+- Take a look at the `mtcars` dataset using `glimpse()`
+
+- Use the `select()` function to select any 3 variables
+
+- Use the `select()` function to select the last 3 variables
+
+- Use the `select()` function to rename `mpg` to `hello_world`
+
+]
+
+.footnote[`?select()` if you need help]
+
+???
+
+`select(mtcars, mpg, disp, drat)`
+
+`select(mtcars, am:carb)`
+
+`select(mtcars, hello_world = mpg)`
+
+---
+layout: true
+class: middle
+
+# **filter** 
+
+# .blue[<u>rows</u>] .grey[of a dataframe] 
+
+# .grey[with]
+
+# .big[filter()]
+
+---
+
+---
+background-image: url(./assets/img/filter1.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/filter2.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/filter3.png)
+background-size: 600px
+background-position: 90% 40%
+
+---
+layout: false
+
+# filter()
+
+- You can use logical operators in filter
+
+| Operator   | function                 |
+| :--------: | :----------------------- |
+| **<**      | less than                |
+| **>**      | greater than             |
+| **<=**     | less than or equal to    |
+| **>=**     | greater than or equal to |
+| **==**     | equal to                 |
+| **!=**     | not equal to             |
+| **&#124;** | or                       |
+| **&**      | and                      |
+| **%in%**   | in                       |
+
+- Filter rows in which `mpg` is less than 20 and greater than 14
+- Filter rows in which `cyl` is equal to 6
+- Filter rows in which `mpg` is greater than 20 or `disp` is less than 
+200
+
+???
+
+`filter(mtcars, mpg < 20 & mpg > 14)`
+
+`filter(mtcars, cyl == 6)`
+
+`filter(mtcars, mpg > 20 | disp < 200)`
+
+---
+layout: true
+class: middle
+
+# **arrange** 
+
+# .blue[<u>rows</u>] .grey[of a dataframe] 
+
+# .grey[with]
+
+# .big[arrange()]
+
+---
+
+---
+background-image: url(./assets/img/arrange1.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/arrange2.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/arrange3.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/arrange4.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+layout: false
+
+# arrange()
+
+.big[
+
+- You probably won't use this very often
+
+- You can arrange using multiple variables
+
+- Arrange the `mtcars` dataset based on `cyl` and `disp`
+
+- Arrange the `mtcars` dataset based on `mpg` from highest to lowest
+
+]
+
+???
+
+`arrange(mtcars, cyl, disp)`
+
+`arrange(mtcars, desc(mpg))`
+
+---
+layout: true
+class: middle
+
+# **mutate** 
+
+# .blue[<u>variables</u>] .grey[of a dataframe] 
+
+# .grey[with]
+
+# .big[mutate()]
+
+---
+
+---
+background-image: url(./assets/img/mutate1.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/mutate2.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/mutate3.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+layout: false
+background-image: url(./assets/img/mutate4.png)
+background-size: contain
+
+---
+background-image: url(./assets/img/mutate5.png)
+background-size: contain
+
+---
+
+# mutate()
+
+- Get comfortable using `mutate()`
+
+- In the `mtcars` dataset, `select` the `mpg` column and then...
+  - create a new column called `mpg_x2` that doubles every value in the dataframe
+--
+
+  - create a new column called `mpg_c` that centers the mpg data by subtracting the mean value of `mpg` from every value in the dataframe
+--
+
+  - **CHALLENGE**: create a new column called `value` that applies the label 'good' to cars that get over 18 mpg and the label 'bad' to cars that get 18 mpg or less
+
+--
+
+**HINT**:  
+Start every attempt in the same way... 
+
+.pull-left[
+
+```{r, dummy, eval=F, echo=T}
+mtcars %>% 
+  select(., mpg) %>% 
+  mutate(., ???) #<<
+```
+
+]
+
+???
+
+```
+mtcars %>% 
+  select(., mpg) %>% 
+  mutate(., mpg_x2 = mpg * 2)
+```
+
+```
+mtcars %>% 
+  select(., mpg) %>% 
+  mutate(., mpg_c = mpg - mean(mpg))
+```
+
+```
+mtcars %>% 
+  select(., mpg) %>% 
+  mutate(., value = if_else(mpg <= 18, 'bad', 'good'))
+```
+
+---
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/rstats/memes/rstats_case_when.png)
+background-size: 600px
+background-position: 100% 50%
+
+# Advanced mutations
+
+### mutate() + case_when()
+
+.pull-left[
+
+- Extremely useful when you need to create a new column based on multiple 
+conditions of another column
+
+- Use this if you find yourself using nested `if_else()`
+
+- Syntax uses logical operators:  
+`condition ~ desired result`
+
+]
+
+---
+
+.pull-left[
+
+### Conditions
+
+- if **age of learning** is .blue[less than] 12 and **L1** is .blue[Spanish], then .green[heritage speaker]
+- if **age of learning** is .blue[less than] 12 and **L1** is .blue[English], then .green[early learner]
+- if **age of learning** is .blue[greater than] 12, then .green[late learner]
+- if **age of learning** is `NA`, then .green[monolingual]
+
+```{r, case-when-ex, echo=F}
+case_when_df <- tribble(
+  ~`id`, ~`age_learn_l2`, ~`l1`, 
+    101,                 3,  'sp', 
+    102,                 2,  'sp', 
+    103,                 3,  'sp', 
+    104,                NA,  'sp', 
+    105,                18,  'en', 
+    106,                17,  'en', 
+    107,                 3,  'en', 
+    108,                 2,  'en', 
+    109,                NA,  'en', 
+    110,                 3,  'sp'
+)
+gt::gt(case_when_df)
+```
+
+]
+
+--
+
+.pull-right[
+
+### Code
+
+```{r, case-when-implementation}
+case_when_df %>% 
+mutate(., group = case_when( #<<
+ age_learn_l2 < 12 & l1 == 'sp' ~ 'heritage', 
+ age_learn_l2 < 12 & l1 == 'en' ~ 'early_learner', 
+ age_learn_l2 > 12 ~ 'late_learner', 
+ is.na(age_learn_l2) ~ 'monolingual'
+)) %>% 
+gt::gt()
+```
+
+]
+
+---
+layout: true
+class: middle
+
+.pull-left[
+
+# **summarize** 
+
+# .blue[<u>variables</u>] .grey[of a dataframe] 
+
+# .grey[with]
+
+# .big[summarize()]
+
+]
+
+---
+
+---
+background-image: url(./assets/img/summarize1.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/summarize2.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/summarize3.png)
+background-size: 600px
+background-position: 90% 50%
+
+--
+
+.pull-right[
+.footnote[
+- `summarize()` will always reduce the number of rows in your dataframe
+- `summarize()` is often accompanied by the helper function `group_by()`
+]
+]
+
+---
+background-image: url(./assets/img/summarize4.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+background-image: url(./assets/img/summarize5.png)
+background-size: 600px
+background-position: 90% 50%
+
+---
+layout: false
+
+# summarize() <br> group_by %>% summarize()
+
+### Note
+
+- Get accustomed to using these two functions, they are extremely useful
+- Remember that `summarize()` reduces the number of rows in your dataframe
+- Remember that `mutate()` adds a column to your dataframe
+- You can include more than one summary statistic inside `summarize()`
+
+--
+
+### Practice
+
+- Calculate the mean value of `mpg` in the dataset `mtcars`
+- Calculate the mean value of `mpg` as a function of `cyl`
+- Calculate the mean, standard deviation, min, and max of `mpg` as 
+a function of `cyl`
+
+???
+
+```
+mtcars %>% 
+  group_by(., cyl) %>% 
+  summarize(., mean_mpg = mean(mpg), 
+               sd_mpg = sd(mpg), 
+               min_mpg = min(mpg), 
+               max_mpg = max(mpg))
+```
+
+---
+background-color: black
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/rstats/memes/r_tidy_verbs.png)
+background-size: contain
+background-position: 100% 50%
+
+# Summary
+
+
+
+
+
+
+
+
+
+
+
+---
+class: title-slide-section-grey, center, middle
+background-image: url(https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/tidyr.png)
+background-size: contain
+
+---
+background-image: url(https://raw.githubusercontent.com/rstudio/hex-stickers/master/PNG/tidyr.png)
+background-size: 200px
+background-position: 95% 5%
+
+# tidyr
+
+### What is `tidyr`?
+
+- A package that is part of the `tidyverse`
+
+- Contains functions (verbs) that are helpful for tidying (cleaning, 
+munging) data
+
+### What is tidy data?
+
+- Each variable must have its own column.
+
+- Each observation must have its own row.
+
+- Each value must have its own cell.
+
+- (most) functions in R are designed to work with tidy data
+
+- It is imperative that you learn how to tidy your data
+
+---
+layout: true
+
+# What does untidy data look like?
+
+- https://www.jvcasillas.com/untidydata/
+
+---
+
+<iframe src="https://www.jvcasillas.com/untidydata" style="border:none;" height="400" width="100%"></iframe>
+
+---
+
+
+.pull-left[
+```{r, untidydata-pre-post, echo=F}
+head(pre_post, 15) %>% gt
+```
+]
+
+.pull-right[
+
+### `pre_post`
+
+- How many columns are there?
+
+- How many variables are there? What are they?
+
+- How many observations are there per row?
+
+]
+
+---
+layout: false
+class: middle, center
+
+# **separate** 
+
+# .blue[<u>elements</u>] .grey[of a variable] 
+
+# .grey[with]
+
+# .big[separate()]
+
+---
+
+# separate()
+
+.pull-left[
+
+- This is untidy data
+
+- How many variables does the column `id` contain?
+
+```{r, print-data-wide, echo=F}
+my_data_wide %>% 
+  select(-post_test) %>% 
+  gt()
+```
+
+]
+
+--
+
+.pull-right[
+
+```{r, separate-data-wide, echo=F}
+sep_ex <- my_data_wide %>% 
+  separate(., col = id, 
+              into = c('id', 'group', 'condition'), 
+              sep = "_") %>% 
+  select(-post_test)
+```
+
+```{r, dummy-separate, eval=F}
+my_data_wide %>% 
+  separate(., col = id, 
+              into = c('id', 'group', 'condition'), 
+              sep = "_") 
+```
+
+```{r, print-separated-data, echo=F}
+gt(sep_ex)
+```
+]
+
+---
+class: middle, center
+
+# **unite** 
+
+# .blue[<u>columns</u>] .grey[into a variable] 
+
+# .grey[with]
+
+# .big[unite()]
+
+---
+
+# unite()
+
+.pull-left[
+
+- We will put `id`, `group`, and `condition` back into a single column
+
+- You probably won't use this often
+
+```{r, unite-ex, echo=F}
+gt(sep_ex)
+```
+
+]
+
+--
+
+.pull-right[
+
+```{r, unite-data-wide, echo=F}
+unite_ex <- sep_ex %>% 
+  unite(., col = id_group_condition, 
+           c('id', 'group', 'condition'), sep = "-")
+```
+
+```{r, dummy-unite, eval=F}
+my_data_wide %>% 
+  unite(., col = id_group_condition,      
+           c('id', 'group', 'condition'), 
+           sep = "-")                     
+```
+
+```{r, print-united-data, echo=F}
+gt(unite_ex)
+```
+
+]
+
+---
+class: title-slide-section-grey, center, middle
+
+# What if we have more than one observation per row?
+
+---
+class: middle, center
+
+# **gather** 
+
+# .blue[<u>dataframes</u>] .grey[from] wide .grey[to] long
+
+# .grey[with]
+
+# .big[gather()]
+
+---
+
+.pull-left[
+```{r, gather-ex1, echo=F}
+mutate(my_data_wide, 
+    pre_test = cell_spec(pre_test, color = "red"), 
+    post_test = cell_spec(post_test, color = "blue")) %>% 
+  kable(., escape = F, format = 'html') %>% 
+  kable_styling(., position = 'center')
+```
+
+- What do the columns `pre_test` and `post_test` represent?
+
+- What is each numeric value?
+
+]
+
+--
+
+.pull-right[
+```{r, gather-ex2, echo=F}
+my_data_wide %>% 
+  gather(., key = test, value = score, -id) %>% 
+  mutate(., 
+    test = if_else(test == "pre_test", cell_spec(test, color = "red"), 
+                                       cell_spec(test, color = "blue"))) %>% 
+  kable(., escape = F, format = 'html') %>% 
+  kable_styling(., position = 'center')
+```
+]
+
+---
+class: middle
+
+```{r, gather-ex3, eval=F}
+my_data_wide %>% 
+  gather(., key = test, value = score, -id) 
+```
+
+```{r, ref.label='gather-ex2', echo=F}
+```
+
+---
+background-image: url(./assets/img/gather.gif)
+background-size: contain
+
+.footnote[https://alison.rbind.io]
+
+---
+
+# gather()
+
+### Note
+
+- You will have to do this often
+- Remember... 
+    - `key` is the name you will give the column of the factor
+    - `value` is the name you will give the column of observations (numbers)
+    - Finally, you list the columns to include or exclude
+
+### Practice
+
+- Download the `untidydata` package:  
+`remotes::install_github('jvcasillas/untidydata')`
+- Load the package and convert the `pre_post` data set from wide to long
+  - Include the relevant variables or
+  - Exclude the irrelevant variable
+
+???
+
+```
+pre_post %>% 
+  gather(., key = test, value = score, test1:test2)
+```
+
+```
+pre_post %>% 
+  gather(., key = test, value = score, -id, -spec)
+```
+
+---
+class: title-slide-section-grey, center, middle
+
+# What if we a wide data set?
+
+---
+class: middle, center
+
+# **spread** 
+
+# .blue[<u>dataframes</u>] .grey[from] long .grey[to] wide
+
+# .grey[with]
+
+# .big[spread()]
+
+---
+
+.pull-left[
+```{r, ref.label='gather-ex2', echo=F}
+```
+]
+
+.pull-right[
+<br><br><br><br><br>
+- We need to `spread()` this dataframe back to wide format
+
+- Why might we want to do this?
+
+]
+
+---
+
+```{r, spread-ex1, echo=F}
+my_data_long <- my_data_wide %>% 
+  gather(., key = test, value = score, -id) 
+```
+
+```{r, spread-ex2, echo=T, fig.retina=2, fig.width=13, fig.height=6, fig.align='center'}
+my_data_long %>% 
+  spread(., key = test, value = score) %>% #<<
+  ggplot(., aes(x = pre_test, post_test)) + 
+    geom_vline(xintercept = mean(my_data_wide$pre_test), lty = 3) + 
+    geom_hline(yintercept = mean(my_data_wide$post_test), lty = 3) + 
+    geom_point(size = 4) + 
+    theme_test(base_size = 18, base_family = "Times")
+```
+
+---
+
+# spread()
+
+### Note
+
+- You will probably use `spread()` less
+
+- It can be useful for making scatterplots and doing data transformations using `mutate()`
+
+### Exercise
+
+- Take a look at the `language_diversity` data set in `untidydata`
+
+- Spread the data set from long to wide and create a plot
+
+???
+
+```
+language_diversity %>% 
+  spread(., Measurement, Value) %>% 
+  ggplot(., aes(x = log(Area), y = log(Langs), label = Country)) + 
+    geom_text() + 
+    geom_smooth(method = glm, method.args=list(family = "poisson"))
+```
+
+---
+
+background-image: url(./assets/img/spread_gather.gif)
+background-size: contain
+
+---
+
+<!--
+background-color: black
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/rstats/memes/rstats_load_all1.png)
+background-size: contain
+
+background-color: black
+background-image: url(https://raw.githubusercontent.com/jvcasillas/media/master/rstats/memes/rstats_load_all2.png)
+background-size: contain
+-->
+
+# Loading and saving data
+
+.pull-left[
+### read_csv()
+
+- Read .csv files into R using the `read_csv()` function
+- Ideally your data is stored in a folder of your project called `data`
+- If it is raw data you can use sub-directories, i.e., `data > raw`
+- You can pipe directly into any other verbs to tidy your data
+- Ex.  
+```{r, read-data-ex, eval=F}
+my_df <- read_csv("./data/raw/raw_data.csv")
+```
+]
+
+.pull-right[
+### write_csv()
+
+- Save dataframes as .csv files using `write_csv()` function
+- After tidying your data you can (should) save it 
+- Keep this data separate from your raw data, i.e., `data > tidy`
+- You can pipe into `write_csv()` right after tidying your data
+- Ex.  
+```{r, write-data-ex, eval=F}
+my_df <- read_csv("./data/raw/raw_data.csv") %>% 
+mutate(., new_var = var1 - var2, 
+          group_sum = if_else(group == "level", -1, 1)) %>% 
+write_csv(., path = "./data/tidy/tidy_data.csv")
+```
+]
+
+---
+class: title-slide-section-grey, center, middle
+
+# A note about paths
+
+---
+
+# System paths
+
+- what are they?
+- how do they work?
+- relative paths
+- absolute paths
+- what problems do they create?
+- what are the solutions?
+
+---
+
+# System paths
+
+### What are they?
+
+- Your computer is a hierarchical system of directories (folders) 
+and files
+- You can think of it as a garden of forking paths
+- The top of this hierarchy is the **root**
+- The *path* from **root** to a given file is an .blue[absolute path]
+
+![](https://www.researchgate.net/profile/Peter_Makovini/publication/309411137/figure/fig4/AS:667818014044161@1536231630016/Kanes-illustration-of-a-garden-of-forking-paths-2005.jpg)
+
+---
+background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbaVWfe2qSnmcNes6NZADG-QI6o-3JaTjsc6-hC7Hv08turZmSgg)
+background-size: 400px
+background-position: 95% 10%
+
+# System paths
+
+### How do they work?
+
+.pull-left[
+- The user defines the system specific path
+- Every time one "enters" a directory the path is marked with "**`/`**"<sup>1</sup>
+- Ex.  
+`/Users/casillas/Desktop/new_proj`
+- This **absolute path** goes from my system root to a directory on 
+my desktop called `new_proj`
+
+.footnote[<sup>1</sup>This is specific to the operating system. For PCs you use "**`\`**".]
+]
+
+--
+
+</br></br></br></br></br></br>
+.pull-right[
+- We can simplify the hierarchy by using .blue[relative paths]
+- With a .blue[relative path] the user specifies what root is and all 
+paths are *relative* to that root
+]
+
+---
+
+## `new_proj` as root
+
+.big[
+&nbsp; **.**  
+├── README.md  
+├── data  
+│ &nbsp; &nbsp; &nbsp; ├── raw  
+│ &nbsp; &nbsp; &nbsp; │ &nbsp; &nbsp; &nbsp; ├── EMD_2afc_template_2019-02-14_09h56.54.363.csv  
+│ &nbsp; &nbsp; &nbsp; │ &nbsp; &nbsp; &nbsp; └── ...  
+│ &nbsp; &nbsp; &nbsp; └── tidy  
+│ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; └── tidy_data.csv  
+├── my_proj.Rproj  
+└── scripts  
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; └── my_script.R
+
+]
+
+---
+
+# System paths
+
+### What problems do they create?
+
+- An **absolute path** can get long (and annoying) fast
+- Your file system will have different paths than my file system
+
+--
+
+### What are the solutions? 
+
+- Always use relative paths! 
+  - **`./`** = "here"
+  - **`../`** = "Go up one directory"
+  - **`../../`** = "Go up two directories"
+- Always use RStudio projects `r emojifont::emoji("thumbsup")`
+- Use Rstudio projects + `here()` `r emojifont::emoji("heart_eyes")`
+
+---
+
+# System paths
+
+### Exercise I
+
+- Download this repo: https://github.com/jvcasillas/new_proj
+- Load the data using an absolute path
+- Reload the data using a relative path
+- Calculate a summary on the data (`group_by() + summarize()`) 
+and save the output as a csv to the data folder
+- Load the new .csv
+- Move the .csv files to root and reload them
+
+--
+
+### Exercise II
+
+- Install `here`
+- Load `here`
+- Run `here()`. What happens?
+- Load the data as you did before but use `here()` where previously 
+you used a relative path
+
+---
+class: title-slide-final, middle
+background-image: url(https://github.com/jvcasillas/ru_xaringan/raw/master/img/logo/ru_shield.png), url(https://www.r-project.org/Rlogo.png)
+background-size: 55px, 100px
+background-position: 9% 15%, 89% 15%
+
+# Getting help
+
+## If you have problems getting or tidying your data
+## ask for help in the slack channel
+
+### You can find some very basic tutorials related to 
+### R, RStudio, RMarkdown, GitHub, and Slack [here][here]
+
+[here]: http://www.jvcasillas.com/ru_teaching/ru_spanish_589/589_01_s2018/sources/tuts/index.html

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Research Methods: Open Science and Reproducible Research in Linguistics</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Joseph V. Casillas, PhD" />
+    <link href="assets/remark-css/hygge.css" rel="stylesheet" />
+    <link href="assets/remark-css/rutgers.css" rel="stylesheet" />
+    <link href="assets/remark-css/rutgers-fonts.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/5235085b15.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Research Methods: Open Science and Reproducible Research in Linguistics
+## Reproducible projects<br>Version control II: RStudio
+### Joseph V. Casillas, PhD
+### Rutgers University</br>Spring 2019</br>Last update: 2019-02-21
+
+---
+
+
+
+
+
+class: title-slide-section-grey, middle, center
+
+# More about projects
+
+---
+class: middle, center
+
+# Workflows and projects
+
+### What does your workflow currently look like?
+
+### What do you organize for? 
+
+### How do you do it? 
+
+### Where do your files live?
+
+---
+
+# RStudio projects
+
+### If your projects include R scripts, RMarkdown documents, HTML slides, etc., you should be using RStudio projects
+
+--
+
+- What are they?  
+
+--
+
+.content-box-blue[
+`.rproj` files create an independent RStudio environment that limits the scope of your R session to the project in question.
+]
+
+--
+
+- Why use them?  
+
+--
+
+  - They simplify organizing projects
+  - They integrate well with github
+  - They promote a project-oriented workflow
+
+---
+class: title-slide-section-grey, middle, center
+
+# What's in a project anyway?
+
+---
+
+# Directory structure
+
+### Student
+
+.big[
+- class notes
+- articles
+- misc. documents
+- final project
+- homework
+]
+
+--
+
+background-image: url(./assets/img/student_project.png)
+background-size: 700px
+background-position: 95% 50%
+
+---
+background-color: black
+background-image: url(./assets/img/student_project.png)
+background-size: contain
+
+---
+
+# Directory structure
+
+### Researcher
+
+.big[
+- data
+- scripts
+- manuscript
+- slides
+- READMEs
+]
+
+--
+
+background-image: url(./assets/img/researcher_project.png)
+background-size: 700px
+background-position: 95% 50%
+
+---
+background-color: black
+background-image: url(./assets/img/researcher_project.png)
+background-size: contain
+
+---
+
+# Directory structure
+
+### A note on READMEs
+
+.pull-left[
+
+.large[
+
+- Every folder/directory should have a README.md file that explains...
+  - the purpose of the folder
+  - the contents of the folder
+  - any keys/glossaries necessary to understand the contents of the folder
+  - timestamps
+  - etc.
+
+]
+
+]
+
+.pull-right[
+
+&lt;blockquote align='center' class="twitter-tweet" data-lang="de"&gt;
+&lt;a href="https://twitter.com/jvcasill/status/1033406317304709122?s=12"&gt;&lt;/a&gt;
+&lt;/blockquote&gt;
+
+]
+
+
+---
+class: title-slide-section-grey, middle, center
+
+# Say my name
+
+---
+
+# Naming conventions
+
+### Why?
+
+- You probably don't spend much time thinking about how you name files and documents
+
+- You should
+
+- The idea is to follow a few simple guidelines that will make facilitate 
+organizing your projects and make the file structure easily searchable
+
+---
+
+# Naming conventions
+
+### How?
+
+.pull-left[
+
+- Use descriptive names 
+  - .red[Bad]: `Experiment`
+  - .green[Good]: `qualifying_paper_1`
+
+- no capitals, no spaces (use `_` or `-`)
+  - .red[Bad]: `Experiment for syntax class`
+  - .green[Good]: `semantic_predictability_exp_1`
+
+- no non-standard characters
+  - .red[Bad]: `Analysis of ð for ICPhS 2019`
+  - .green[Good]: `spirantization_icphs_2019`
+
+]
+
+--
+
+.pull-right[
+
+- Numbers: use 2 places minimum, year-month-day
+  - .red[Bad]: `Analysis 1`
+  - .blue[Better]: `01_analysis`
+  - .green[Best]: `2019-02-20_data_download`
+
+]
+
+--
+
+background-image: url(./assets/img/numbers.png)
+background-size: 400px
+background-position: 90% 90%
+
+---
+class: title-slide-section-grey, middle, center
+
+# Github integration
+
+---
+background-color: black
+background-image: url(./assets/img/github01.png)
+background-size: contain
+
+---
+background-color: black
+background-image: url(./assets/img/github02.png)
+background-size: contain
+
+---
+class: title-slide-section-grey, center, middle
+
+&lt;blockquote align='center' class="twitter-tweet" data-lang="de"&gt;
+&lt;a href="https://twitter.com/emilywithcurls/status/1098027868632895489"&gt;&lt;/a&gt;
+&lt;/blockquote&gt;
+
+---
+class: title-slide-section-grey, center, middle
+
+# Tips and tricks
+
+---
+
+# Tips and tricks
+
+### Nested projects
+
+- You can have RStudio projects inside of larger projects
+- Only the larger project is a repo
+- Ex.  
+  - Project: `dissertation` (← repo)
+  - Nested project: `production_semantic_processing_las`
+  - Nested project: `prod_perc_bilabials_jphon`
+
+--
+
+### Alfred
+
+- Productivity app 
+- Only on Mac (I think), free
+- Works like Spotlight search, but customizable
+- Set to search for `.rproj` files
+- Allows you to quickly open and close RStudio projects
+
+---
+class: title-slide-final, middle
+background-image: url(https://github.com/jvcasillas/ru_xaringan/raw/master/img/logo/ru_shield.png), url(https://www.r-project.org/Rlogo.png)
+background-size: 55px, 100px
+background-position: 9% 15%, 89% 15%
+
+# Getting help
+
+## If you have problems using RStudio projects 
+## ask for help in the slack channel
+
+### You can find some very basic tutorials related to 
+### R, RStudio, RMarkdown, GitHub, and Slack [here][here]
+
+[here]: http://www.jvcasillas.com/ru_teaching/ru_spanish_589/589_01_s2018/sources/tuts/index.html
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://www.jvcasillas.com/ru_xaringan/js/ru_xaringan.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
