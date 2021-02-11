@@ -392,7 +392,7 @@ case_when_df <- tribble(
     109,                NA,  'en', 
     110,                 3,  'sp'
 )
-gt::gt(case_when_df)
+knitr::kable(case_when_df)
 ```
 
 ]
@@ -411,7 +411,7 @@ mutate(., group = case_when( #<<
  age_learn_l2 > 12 ~ 'late_learner', 
  is.na(age_learn_l2) ~ 'monolingual'
 )) %>% 
-gt::gt()
+knitr::kable()
 ```
 
 ]
@@ -565,7 +565,7 @@ layout: true
 
 .pull-left[
 ```{r, untidydata-pre-post, echo=F}
-head(pre_post, 15) %>% gt
+head(pre_post, 15) %>% knitr::kable()
 ```
 ]
 
@@ -606,7 +606,7 @@ class: middle, center
 ```{r, print-data-wide, echo=F}
 my_data_wide %>% 
   select(-post_test) %>% 
-  gt()
+  knitr::kable()
 ```
 
 ]
@@ -625,13 +625,13 @@ sep_ex <- my_data_wide %>%
 
 ```{r, dummy-separate, eval=F}
 my_data_wide %>% 
-  separate(., col = id, 
-              into = c('id', 'group', 'condition'), 
-              sep = "_") 
+  separate(col = id, 
+           into = c('id', 'group', 'condition'), 
+           sep = "_") 
 ```
 
 ```{r, print-separated-data, echo=F}
-gt(sep_ex)
+knitr::kable(sep_ex)
 ```
 ]
 
@@ -657,7 +657,7 @@ class: middle, center
 - You probably won't use this often
 
 ```{r, unite-ex, echo=F}
-gt(sep_ex)
+knitr::kable(sep_ex)
 ```
 
 ]
@@ -680,7 +680,7 @@ my_data_wide %>%
 ```
 
 ```{r, print-united-data, echo=F}
-gt(unite_ex)
+knitr::kable(unite_ex)
 ```
 
 ]
@@ -693,13 +693,13 @@ class: title-slide-section-grey, center, middle
 ---
 class: middle, center
 
-# **gather** 
+# **pivot_longer()**
 
 # .blue[<u>dataframes</u>] .grey[from] wide .grey[to] long
 
 # .grey[with]
 
-# .big[gather()]
+# .big[pivot_longer()]
 
 ---
 
@@ -723,7 +723,8 @@ mutate(my_data_wide,
 .pull-right[
 ```{r, gather-ex2, echo=F}
 my_data_wide %>% 
-  gather(., key = test, value = score, -id) %>% 
+  pivot_longer(., cols = c("pre_test", "post_test"), 
+                  names_to = "test", values_to = "score") %>% 
   mutate(., 
     test = if_else(test == "pre_test", cell_spec(test, color = "red"), 
                                        cell_spec(test, color = "blue"))) %>% 
@@ -737,7 +738,8 @@ class: middle
 
 ```{r, gather-ex3, eval=F}
 my_data_wide %>% 
-  gather(., key = test, value = score, -id) 
+  pivot_longer(., cols = c("pre_test", "post_test"), 
+                  names_to = "test", values_to = "score")
 ```
 
 ```{r, ref.label='gather-ex2', echo=F}
@@ -751,15 +753,15 @@ background-size: contain
 
 ---
 
-# gather()
+# pivot_longer()
 
 ### Note
 
 - You will have to do this often
 - Remember... 
-    - `key` is the name you will give the column of the factor
-    - `value` is the name you will give the column of observations (numbers)
-    - Finally, you list the columns to include or exclude
+    - `cols` is a vector of names of the columns you want to pivot
+    - `names_to` is the name you will give the column of the factor
+    - `values_to` is the name you will give the column of observations (numbers)
 
 ### Practice
 
@@ -769,16 +771,18 @@ background-size: contain
   - Include the relevant variables or
   - Exclude the irrelevant variable
 
+.footnote[<sup>1</sup> This function used to be called `gather()`]
+
 ???
 
 ```
 pre_post %>% 
-  gather(., key = test, value = score, test1:test2)
+  pivot_longer(., cols = test1:test2, names_to = "test", values_to = "score")
 ```
 
 ```
 pre_post %>% 
-  gather(., key = test, value = score, -id, -spec)
+  pivot_longer(., cols = -c("id", "spec"), names_to = "test", values_to = "score")
 ```
 
 ---
@@ -789,13 +793,13 @@ class: title-slide-section-grey, center, middle
 ---
 class: middle, center
 
-# **spread** 
+# **pivot_wider**
 
 # .blue[<u>dataframes</u>] .grey[from] long .grey[to] wide
 
 # .grey[with]
 
-# .big[spread()]
+# .big[pivot_wider()]
 
 ---
 
@@ -816,12 +820,12 @@ class: middle, center
 
 ```{r, spread-ex1, echo=F}
 my_data_long <- my_data_wide %>% 
-  gather(., key = test, value = score, -id) 
+  pivot_longer(cols = -id, names_to = "test", values_to = "score") 
 ```
 
 ```{r, spread-ex2, echo=T, fig.retina=2, fig.width=13, fig.height=6, fig.align='center'}
 my_data_long %>% 
-  spread(., key = test, value = score) %>% #<<
+  pivot_wider(names_from = "test", values_from = "score") %>% #<<
   ggplot(., aes(x = pre_test, post_test)) + 
     geom_vline(xintercept = mean(my_data_wide$pre_test), lty = 3) + 
     geom_hline(yintercept = mean(my_data_wide$post_test), lty = 3) + 
@@ -831,11 +835,12 @@ my_data_long %>%
 
 ---
 
-# spread()
+# pivot_wider()
+
 
 ### Note
 
-- You will probably use `spread()` less
+- You will probably use `pivot_wider()` less
 
 - It can be useful for making scatterplots and doing data transformations using `mutate()`
 
@@ -843,16 +848,18 @@ my_data_long %>%
 
 - Take a look at the `language_diversity` data set in `untidydata`
 
-- Spread the data set from long to wide and create a plot
+- Spread the data set from long to wide using `pivot_wider` and create a plot
+
+.footnote[<sup>1</sup> This function used to be called `spread()`]
 
 ???
 
 ```
 language_diversity %>% 
-  spread(., Measurement, Value) %>% 
+  pivot_wider(names_from = "Measurement", values_from = "Value") %>% 
   ggplot(., aes(x = log(Area), y = log(Langs), label = Country)) + 
     geom_text() + 
-    geom_smooth(method = glm, method.args=list(family = "poisson"))
+    geom_smooth(method = "glm", method.args=list(family = "poisson"))
 ```
 
 ---
