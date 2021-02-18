@@ -788,7 +788,7 @@ pre_post %>%
 ---
 class: title-slide-section-grey, center, middle
 
-# What if we a wide data set?
+# What if we want a wide data set?
 
 ---
 class: middle, center
@@ -810,7 +810,7 @@ class: middle, center
 
 .pull-right[
 <br><br><br><br><br>
-- We need to `spread()` this dataframe back to wide format
+- We need to `spread()` this dataframe back to wide format (`pivot_wider`)
 
 - Why might we want to do this?
 
