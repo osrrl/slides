@@ -526,14 +526,14 @@ summary(mtcars)
 ### It starts with data
 
 - We will start all of our plots in the same way... using the dataframe and 
-the pipe operator (**%>%**) like this: 
+the pipe operator (**|>**) like this: 
 
 --
 
 ```{r, pipe, eval=FALSE}
 # Call dataframe and 'pipe' into ggplot function
-mtcars %>%  #<<
-  ggplot(., )
+mtcars |>  #<<
+  ggplot()
 ```
 
 --
@@ -541,8 +541,6 @@ mtcars %>%  #<<
 - Notice that I have commented my code
 
 - The pipe operator sends whatever is on the left of the pipe (`mtcars`) to whatever is on the right side (`ggplot`)
-
-- Specifically, it sends whatever is on the left to the following **.**
 
 - As is, this code won't do anything yet
 
@@ -558,8 +556,9 @@ mtcars %>%  #<<
 ```{r, aes-ex, fig.show='hide'}
 # Call dataframe and 'pipe' into ggplot function
 # Add aesthetic mapping to x and y axis
-mtcars %>%  
-  ggplot(., aes(x = disp, y = mpg)) #<<
+mtcars |>  
+  ggplot() + 
+  aes(x = disp, y = mpg) #<<
 ```
 
 --
@@ -581,9 +580,10 @@ mtcars %>%
 # Call dataframe and 'pipe' into ggplot function
 # Add aesthetic mapping to x and y axis
 # Add geometric object (geom_point)
-mtcars %>%  
-  ggplot(., aes(x = disp, y = mpg)) + # We 'add' a layer to the plot
-    geom_point() #<<
+mtcars |>  
+  ggplot() + 
+  aes(x = disp, y = mpg) + # We 'add' a layer to the plot
+  geom_point() #<<
 ```
 
 --
@@ -624,10 +624,13 @@ on the plot
 .pull-left[
 
 ```{r, 'stat-sum-ex', echo=T, eval=F}
-mtcars %>%
-  ggplot(., aes(x = am, y = mpg)) + 
-    stat_summary(fun.data = mean_sdl, 
-                 geom = 'pointrange')
+mtcars |>
+  ggplot() +
+  aes(x = am, y = mpg) + 
+  stat_summary(
+    fun.data = mean_sdl, 
+    geom = 'pointrange'
+  )
 ```
 
 ]
@@ -656,11 +659,14 @@ mtcars %>%
 .pull-left[
 
 ```{r, facets-ex, fig.show='hide'}
-mtcars %>% 
-  ggplot(., aes(x = am, y = mpg)) + 
-    stat_summary(fun.data = mean_sdl, 
-                 geom = 'pointrange') + 
-    facet_grid(. ~ cyl) #<<
+mtcars |> 
+  ggplot() +
+  aes(x = am, y = mpg) + 
+  stat_summary(
+    fun.data = mean_sdl, 
+    geom = 'pointrange'
+  ) + 
+  facet_grid(. ~ cyl) #<<
 ```
 
 ]
@@ -686,11 +692,14 @@ mtcars %>%
 .pull-left[
 
 ```{r, facets-ex2, fig.show='hide'}
-mtcars %>% 
-  ggplot(., aes(x = am, y = mpg)) + 
-    stat_summary(fun.data = mean_sdl, 
-                 geom = 'pointrange') + 
-    facet_grid(cyl ~ .) #<<
+mtcars |> 
+  ggplot() + 
+  aes(x = am, y = mpg) + 
+  stat_summary(
+    fun.data = mean_sdl, 
+    geom = 'pointrange'
+  ) + 
+  facet_grid(cyl ~ .) #<<
 ```
 
 ]
@@ -716,12 +725,14 @@ mtcars %>%
 .pull-left[
 
 ```{r, shapes-ex, fig.show='hide'}
-mtcars %>% 
-  ggplot(., aes(x = factor(am), y = mpg, 
-                shape = factor(cyl))) +  #<<
-    stat_summary(fun.data = mean_sdl, 
-                 geom = 'pointrange', 
-                 position = position_dodge(0.5))
+mtcars |> 
+  ggplot() + 
+  aes(x = factor(am), y = mpg, shape = factor(cyl)) +  #<<
+  stat_summary(
+    fun.data = mean_sdl, 
+    geom = 'pointrange', 
+    position = position_dodge(0.5)
+  )
 ```
 ]
 

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="" xml:lang="">
   <head>
     <title>Research Methods: Open Science and Reproducible Research in Linguistics</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta name="author" content="Joseph V. Casillas, PhD" />
+    <script src="assets/header-attrs/header-attrs.js"></script>
     <link href="assets/remark-css/hygge.css" rel="stylesheet" />
     <link href="assets/remark-css/rutgers.css" rel="stylesheet" />
     <link href="assets/remark-css/rutgers-fonts.css" rel="stylesheet" />
@@ -13,10 +14,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Research Methods: Open Science and Reproducible Research in Linguistics
+]
+.subtitle[
 ## Welcome to the tidyverse I: Standards and plots
+]
+.author[
 ### Joseph V. Casillas, PhD
-### Rutgers University</br>Spring 2019</br>Last update: 2019-02-27
+]
+.date[
+### Rutgers University</br>Spring 2019</br>Last update: 2025-02-09
+]
 
 ---
 
@@ -100,7 +109,7 @@ remember your train of thought
 .pull-left[
 
 
-```r
+``` r
 # This is a comment
 
 # You can put comments above your code
@@ -120,7 +129,7 @@ x^2 # x squared
 .pull-right[
 
 
-```r
+``` r
 # Fit a model for mpg as a function of drat
 mod &lt;- lm(mpg ~ drat, data = mtcars)
 
@@ -463,27 +472,27 @@ class: title-slide-section-grey, center, middle
 ### It starts with data
 
 
-```r
+``` r
 glimpse(mtcars)
 ```
 
 ```
-## Observations: 32
-## Variables: 11
-## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2,…
-## $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4,…
-## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140…
-## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 18…
-## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92,…
-## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.1…
-## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.…
-## $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1,…
-## $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1,…
-## $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4,…
-## $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1,…
+## Rows: 32
+## Columns: 11
+## $ mpg  &lt;dbl&gt; 21.0, 21.0, 22.8, 21.4, 18.7, 18.1, 14.3, 24.4, 22.8, 19.2, 17.8,…
+## $ cyl  &lt;dbl&gt; 6, 6, 4, 6, 8, 6, 8, 4, 4, 6, 6, 8, 8, 8, 8, 8, 8, 4, 4, 4, 4, 8,…
+## $ disp &lt;dbl&gt; 160.0, 160.0, 108.0, 258.0, 360.0, 225.0, 360.0, 146.7, 140.8, 16…
+## $ hp   &lt;dbl&gt; 110, 110, 93, 110, 175, 105, 245, 62, 95, 123, 123, 180, 180, 180…
+## $ drat &lt;dbl&gt; 3.90, 3.90, 3.85, 3.08, 3.15, 2.76, 3.21, 3.69, 3.92, 3.92, 3.92,…
+## $ wt   &lt;dbl&gt; 2.620, 2.875, 2.320, 3.215, 3.440, 3.460, 3.570, 3.190, 3.150, 3.…
+## $ qsec &lt;dbl&gt; 16.46, 17.02, 18.61, 19.44, 17.02, 20.22, 15.84, 20.00, 22.90, 18…
+## $ vs   &lt;dbl&gt; 0, 0, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0,…
+## $ am   &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0,…
+## $ gear &lt;dbl&gt; 4, 4, 4, 3, 3, 3, 3, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 4, 3, 3,…
+## $ carb &lt;dbl&gt; 4, 4, 1, 1, 2, 1, 4, 2, 2, 4, 4, 3, 3, 3, 4, 4, 4, 1, 2, 1, 1, 2,…
 ```
 
-```r
+``` r
 dim(mtcars)
 ```
 
@@ -498,7 +507,7 @@ dim(mtcars)
 ### It starts with data
 
 
-```r
+``` r
 head(mtcars, 15)
 ```
 
@@ -528,7 +537,7 @@ head(mtcars, 15)
 ### It starts with data
 
 
-```r
+``` r
 summary(mtcars)
 ```
 
@@ -563,15 +572,15 @@ summary(mtcars)
 ### It starts with data
 
 - We will start all of our plots in the same way... using the dataframe and 
-the pipe operator (**%&gt;%**) like this: 
+the pipe operator (**|&gt;**) like this: 
 
 --
 
 
-```r
+``` r
 # Call dataframe and 'pipe' into ggplot function
-*mtcars %&gt;%
-  ggplot(., )
+*mtcars |&gt;
+  ggplot()
 ```
 
 --
@@ -579,8 +588,6 @@ the pipe operator (**%&gt;%**) like this:
 - Notice that I have commented my code
 
 - The pipe operator sends whatever is on the left of the pipe (`mtcars`) to whatever is on the right side (`ggplot`)
-
-- Specifically, it sends whatever is on the left to the following **.**
 
 - As is, this code won't do anything yet
 
@@ -594,11 +601,12 @@ the pipe operator (**%&gt;%**) like this:
 - Let's update our code: 
 
 
-```r
+``` r
 # Call dataframe and 'pipe' into ggplot function
 # Add aesthetic mapping to x and y axis
-mtcars %&gt;%  
-* ggplot(., aes(x = disp, y = mpg))
+mtcars |&gt;  
+  ggplot() + 
+* aes(x = disp, y = mpg)
 ```
 
 --
@@ -616,13 +624,14 @@ mtcars %&gt;%
 --
 
 
-```r
+``` r
 # Call dataframe and 'pipe' into ggplot function
 # Add aesthetic mapping to x and y axis
 # Add geometric object (geom_point)
-mtcars %&gt;%  
-  ggplot(., aes(x = disp, y = mpg)) + # We 'add' a layer to the plot
-*   geom_point()
+mtcars |&gt;  
+  ggplot() + 
+  aes(x = disp, y = mpg) + # We 'add' a layer to the plot
+* geom_point()
 ```
 
 --
@@ -662,11 +671,14 @@ on the plot
 .pull-left[
 
 
-```r
-mtcars %&gt;%
-  ggplot(., aes(x = am, y = mpg)) + 
-    stat_summary(fun.data = mean_sdl, 
-                 geom = 'pointrange')
+``` r
+mtcars |&gt;
+  ggplot() +
+  aes(x = am, y = mpg) + 
+  stat_summary(
+    fun.data = mean_sdl, 
+    geom = 'pointrange'
+  )
 ```
 
 ]
@@ -694,12 +706,15 @@ mtcars %&gt;%
 .pull-left[
 
 
-```r
-mtcars %&gt;% 
-  ggplot(., aes(x = am, y = mpg)) + 
-    stat_summary(fun.data = mean_sdl, 
-                 geom = 'pointrange') + 
-*   facet_grid(. ~ cyl)
+``` r
+mtcars |&gt; 
+  ggplot() +
+  aes(x = am, y = mpg) + 
+  stat_summary(
+    fun.data = mean_sdl, 
+    geom = 'pointrange'
+  ) + 
+* facet_grid(. ~ cyl)
 ```
 
 ]
@@ -724,12 +739,15 @@ mtcars %&gt;%
 .pull-left[
 
 
-```r
-mtcars %&gt;% 
-  ggplot(., aes(x = am, y = mpg)) + 
-    stat_summary(fun.data = mean_sdl, 
-                 geom = 'pointrange') + 
-*   facet_grid(cyl ~ .)
+``` r
+mtcars |&gt; 
+  ggplot() + 
+  aes(x = am, y = mpg) + 
+  stat_summary(
+    fun.data = mean_sdl, 
+    geom = 'pointrange'
+  ) + 
+* facet_grid(cyl ~ .)
 ```
 
 ]
@@ -754,13 +772,15 @@ mtcars %&gt;%
 .pull-left[
 
 
-```r
-mtcars %&gt;% 
-  ggplot(., aes(x = factor(am), y = mpg, 
-*               shape = factor(cyl))) +
-    stat_summary(fun.data = mean_sdl, 
-                 geom = 'pointrange', 
-                 position = position_dodge(0.5))
+``` r
+mtcars |&gt; 
+  ggplot() + 
+* aes(x = factor(am), y = mpg, shape = factor(cyl)) +
+  stat_summary(
+    fun.data = mean_sdl, 
+    geom = 'pointrange', 
+    position = position_dodge(0.5)
+  )
 ```
 ]
 
@@ -852,9 +872,38 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     deleted = true;
   });
-})();</script>
-
-<script>
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
 (function() {
   var links = document.getElementsByTagName('a');
   for (var i = 0; i < links.length; i++) {
@@ -863,7 +912,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
   }
 })();
-</script>
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 slideshow._releaseMath = function(el) {
