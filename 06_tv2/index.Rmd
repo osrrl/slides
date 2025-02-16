@@ -319,9 +319,9 @@ Start every attempt in the same way...
 .pull-left[
 
 ```{r, dummy, eval=F, echo=T}
-mtcars %>% 
-  select(., mpg) %>% 
-  mutate(., ???) #<<
+mtcars |> 
+  select(mpg) |> 
+  mutate(???) #<<
 ```
 
 ]
@@ -329,21 +329,21 @@ mtcars %>%
 ???
 
 ```
-mtcars %>% 
-  select(., mpg) %>% 
-  mutate(., mpg_x2 = mpg * 2)
+mtcars |> 
+  select(mpg) |> 
+  mutate(mpg_x2 = mpg * 2)
 ```
 
 ```
-mtcars %>% 
-  select(., mpg) %>% 
-  mutate(., mpg_c = mpg - mean(mpg))
+mtcars |> 
+  select(mpg) |> 
+  mutate(mpg_c = mpg - mean(mpg))
 ```
 
 ```
-mtcars %>% 
-  select(., mpg) %>% 
-  mutate(., value = if_else(mpg <= 18, 'bad', 'good'))
+mtcars |> 
+  select(mpg) |> 
+  mutate(value = if_else(mpg <= 18, 'bad', 'good'))
 ```
 
 ---
@@ -404,13 +404,15 @@ knitr::kable(case_when_df)
 ### Code
 
 ```{r, case-when-implementation}
-case_when_df %>% 
-mutate(., group = case_when( #<<
- age_learn_l2 < 12 & l1 == 'sp' ~ 'heritage', 
- age_learn_l2 < 12 & l1 == 'en' ~ 'early_learner', 
- age_learn_l2 > 12 ~ 'late_learner', 
- is.na(age_learn_l2) ~ 'monolingual'
-)) %>% 
+case_when_df |> 
+mutate(
+  group = case_when( #<<
+    age_learn_l2 < 12 & l1 == 'sp' ~ 'heritage', 
+    age_learn_l2 < 12 & l1 == 'en' ~ 'early_learner', 
+    age_learn_l2 > 12 ~ 'late_learner', 
+    is.na(age_learn_l2) ~ 'monolingual'
+  )
+) |> 
 knitr::kable()
 ```
 
@@ -471,7 +473,7 @@ background-position: 90% 50%
 ---
 layout: false
 
-# summarize() <br> group_by %>% summarize()
+# summarize() <br> group_by |> summarize()
 
 ### Note
 
@@ -492,12 +494,14 @@ a function of `cyl`
 ???
 
 ```
-mtcars %>% 
-  group_by(., cyl) %>% 
-  summarize(., mean_mpg = mean(mpg), 
-               sd_mpg = sd(mpg), 
-               min_mpg = min(mpg), 
-               max_mpg = max(mpg))
+mtcars |> 
+  group_by(cyl) |> 
+  summarize(
+    mean_mpg = mean(mpg), 
+    sd_mpg = sd(mpg), 
+    min_mpg = min(mpg), 
+    max_mpg = max(mpg)
+  )
 ```
 
 ---
@@ -565,7 +569,7 @@ layout: true
 
 .pull-left[
 ```{r, untidydata-pre-post, echo=F}
-head(pre_post, 15) %>% knitr::kable()
+head(pre_post, 15) |> knitr::kable()
 ```
 ]
 
@@ -604,8 +608,8 @@ class: middle, center
 - How many variables does the column `id` contain?
 
 ```{r, print-data-wide, echo=F}
-my_data_wide %>% 
-  select(-post_test) %>% 
+my_data_wide |> 
+  select(-post_test) |> 
   knitr::kable()
 ```
 
@@ -616,18 +620,22 @@ my_data_wide %>%
 .pull-right[
 
 ```{r, separate-data-wide, echo=F}
-sep_ex <- my_data_wide %>% 
-  separate(., col = id, 
-              into = c('id', 'group', 'condition'), 
-              sep = "_") %>% 
+sep_ex <- my_data_wide |> 
+  separate(
+    col = id, 
+    into = c('id', 'group', 'condition'), 
+    sep = "_"
+  ) |> 
   select(-post_test)
 ```
 
 ```{r, dummy-separate, eval=F}
-my_data_wide %>% 
-  separate(col = id, 
-           into = c('id', 'group', 'condition'), 
-           sep = "_") 
+my_data_wide |> 
+  separate(
+    col = id, 
+    into = c('id', 'group', 'condition'), 
+    sep = "_"
+  ) 
 ```
 
 ```{r, print-separated-data, echo=F}
@@ -667,16 +675,21 @@ knitr::kable(sep_ex)
 .pull-right[
 
 ```{r, unite-data-wide, echo=F}
-unite_ex <- sep_ex %>% 
-  unite(., col = id_group_condition, 
-           c('id', 'group', 'condition'), sep = "-")
+unite_ex <- sep_ex |> 
+  unite(
+    col = id_group_condition, 
+    c('id', 'group', 'condition'), 
+    sep = "-"
+  )
 ```
 
 ```{r, dummy-unite, eval=F}
-my_data_wide %>% 
-  unite(., col = id_group_condition,      
-           c('id', 'group', 'condition'), 
-           sep = "-")                     
+my_data_wide |> 
+  unite(
+    col = id_group_condition, 
+    c('id', 'group', 'condition'), 
+    sep = "-"
+  )
 ```
 
 ```{r, print-united-data, echo=F}
@@ -707,9 +720,9 @@ class: middle, center
 ```{r, gather-ex1, echo=F}
 mutate(my_data_wide, 
     pre_test = cell_spec(pre_test, color = "red"), 
-    post_test = cell_spec(post_test, color = "blue")) %>% 
-  kable(., escape = F, format = 'html') %>% 
-  kable_styling(., position = 'center')
+    post_test = cell_spec(post_test, color = "blue")) |> 
+  kable(escape = F, format = 'html') |> 
+  kable_styling(position = 'center')
 ```
 
 - What do the columns `pre_test` and `post_test` represent?
@@ -722,14 +735,21 @@ mutate(my_data_wide,
 
 .pull-right[
 ```{r, gather-ex2, echo=F}
-my_data_wide %>% 
-  pivot_longer(., cols = c("pre_test", "post_test"), 
-                  names_to = "test", values_to = "score") %>% 
-  mutate(., 
-    test = if_else(test == "pre_test", cell_spec(test, color = "red"), 
-                                       cell_spec(test, color = "blue"))) %>% 
-  kable(., escape = F, format = 'html') %>% 
-  kable_styling(., position = 'center')
+my_data_wide |> 
+  pivot_longer(
+    cols = c("pre_test", "post_test"), 
+    names_to = "test", 
+    values_to = "score"
+  ) |> 
+  mutate( 
+    test = if_else(
+      condition = test == "pre_test", 
+      true = cell_spec(test, color = "red"), 
+      false = cell_spec(test, color = "blue")
+    )
+  ) |>
+  kable(escape = F, format = 'html') |> 
+  kable_styling(position = 'center')
 ```
 ]
 
@@ -737,9 +757,12 @@ my_data_wide %>%
 class: middle
 
 ```{r, gather-ex3, eval=F}
-my_data_wide %>% 
-  pivot_longer(., cols = c("pre_test", "post_test"), 
-                  names_to = "test", values_to = "score")
+my_data_wide |> 
+  pivot_longer(
+    cols = c("pre_test", "post_test"), 
+    names_to = "test", 
+    values_to = "score"
+  )
 ```
 
 ```{r, ref.label='gather-ex2', echo=F}
@@ -776,13 +799,13 @@ background-size: contain
 ???
 
 ```
-pre_post %>% 
-  pivot_longer(., cols = test1:test2, names_to = "test", values_to = "score")
+pre_post |> 
+  pivot_longer(cols = test1:test2, names_to = "test", values_to = "score")
 ```
 
 ```
-pre_post %>% 
-  pivot_longer(., cols = -c("id", "spec"), names_to = "test", values_to = "score")
+pre_post |> 
+  pivot_longer(cols = -c("id", "spec"), names_to = "test", values_to = "score")
 ```
 
 ---
@@ -819,18 +842,19 @@ class: middle, center
 ---
 
 ```{r, spread-ex1, echo=F}
-my_data_long <- my_data_wide %>% 
+my_data_long <- my_data_wide |> 
   pivot_longer(cols = -id, names_to = "test", values_to = "score") 
 ```
 
 ```{r, spread-ex2, echo=T, fig.retina=2, fig.width=13, fig.height=6, fig.align='center'}
-my_data_long %>% 
-  pivot_wider(names_from = "test", values_from = "score") %>% #<<
-  ggplot(., aes(x = pre_test, post_test)) + 
-    geom_vline(xintercept = mean(my_data_wide$pre_test), lty = 3) + 
-    geom_hline(yintercept = mean(my_data_wide$post_test), lty = 3) + 
-    geom_point(size = 4) + 
-    theme_test(base_size = 18, base_family = "Times")
+my_data_long |> 
+  pivot_wider(names_from = "test", values_from = "score") |> #<<
+  ggplot() + 
+  aes(x = pre_test, post_test) + 
+  geom_vline(xintercept = mean(my_data_wide$pre_test), lty = 3) + 
+  geom_hline(yintercept = mean(my_data_wide$post_test), lty = 3) + 
+  geom_point(size = 4) + 
+  theme_test(base_size = 18, base_family = "Palatino")
 ```
 
 ---
@@ -855,11 +879,12 @@ my_data_long %>%
 ???
 
 ```
-language_diversity %>% 
-  pivot_wider(names_from = "Measurement", values_from = "Value") %>% 
-  ggplot(., aes(x = log(Area), y = log(Langs), label = Country)) + 
-    geom_text() + 
-    geom_smooth(method = "glm", method.args=list(family = "poisson"))
+language_diversity |> 
+  pivot_wider(names_from = "Measurement", values_from = "Value") |> 
+  ggplot() + 
+  aes(x = log(Area), y = log(Langs), label = Country) + 
+  geom_text() + 
+  geom_smooth(method = "glm", method.args=list(family = "poisson"))
 ```
 
 ---
@@ -903,10 +928,12 @@ my_df <- read_csv("./data/raw/raw_data.csv")
 - You can pipe into `write_csv()` right after tidying your data
 - Ex.  
 ```{r, write-data-ex, eval=F}
-my_df <- read_csv("./data/raw/raw_data.csv") %>% 
-mutate(., new_var = var1 - var2, 
-          group_sum = if_else(group == "level", -1, 1)) %>% 
-write_csv(., path = "./data/tidy/tidy_data.csv")
+my_df <- read_csv("./data/raw/raw_data.csv") |> 
+mutate(
+  new_var = var1 - var2, 
+  group_sum = if_else(group == "level", -1, 1)
+) |> 
+write_csv(path = "./data/tidy/tidy_data.csv")
 ```
 ]
 

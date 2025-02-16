@@ -16,10 +16,18 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
+.title[
 # Research Methods: Open Science and Reproducible Research in Linguistics
+]
+.subtitle[
 ## Welcome to the tidyverse II: Tidying and descriptives
+]
+.author[
 ### Joseph V. Casillas, PhD
-### Rutgers University</br>Spring 2019</br>Last update: 2021-02-18
+]
+.date[
+### Rutgers University</br>Spring 2019</br>Last update: 2025-02-16
+]
 
 ---
 
@@ -287,10 +295,10 @@ Start every attempt in the same way...
 .pull-left[
 
 
-```r
-mtcars %&gt;% 
-  select(., mpg) %&gt;% 
-* mutate(., ???)
+``` r
+mtcars |&gt; 
+  select(mpg) |&gt; 
+* mutate(???)
 ```
 
 ]
@@ -298,21 +306,21 @@ mtcars %&gt;%
 ???
 
 ```
-mtcars %&gt;% 
-  select(., mpg) %&gt;% 
-  mutate(., mpg_x2 = mpg * 2)
+mtcars |&gt; 
+  select(mpg) |&gt; 
+  mutate(mpg_x2 = mpg * 2)
 ```
 
 ```
-mtcars %&gt;% 
-  select(., mpg) %&gt;% 
-  mutate(., mpg_c = mpg - mean(mpg))
+mtcars |&gt; 
+  select(mpg) |&gt; 
+  mutate(mpg_c = mpg - mean(mpg))
 ```
 
 ```
-mtcars %&gt;% 
-  select(., mpg) %&gt;% 
-  mutate(., value = if_else(mpg &lt;= 18, 'bad', 'good'))
+mtcars |&gt; 
+  select(mpg) |&gt; 
+  mutate(value = if_else(mpg &lt;= 18, 'bad', 'good'))
 ```
 
 ---
@@ -347,67 +355,19 @@ conditions of another column
 - if **age of learning** is .blue[greater than] 12, then .green[late learner]
 - if **age of learning** is `NA`, then .green[monolingual]
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; age_learn_l2 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; l1 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 101 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 102 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 103 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 104 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 105 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 106 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 107 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 108 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 109 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|  id| age_learn_l2|l1 |
+|---:|------------:|:--|
+| 101|            3|sp |
+| 102|            2|sp |
+| 103|            3|sp |
+| 104|           NA|sp |
+| 105|           18|en |
+| 106|           17|en |
+| 107|            3|en |
+| 108|            2|en |
+| 109|           NA|en |
+| 110|            3|sp |
 
 ]
 
@@ -418,89 +378,33 @@ conditions of another column
 ### Code
 
 
-```r
-case_when_df %&gt;% 
-*mutate(., group = case_when(
- age_learn_l2 &lt; 12 &amp; l1 == 'sp' ~ 'heritage', 
- age_learn_l2 &lt; 12 &amp; l1 == 'en' ~ 'early_learner', 
- age_learn_l2 &gt; 12 ~ 'late_learner', 
- is.na(age_learn_l2) ~ 'monolingual'
-)) %&gt;% 
+``` r
+case_when_df |&gt; 
+mutate(
+* group = case_when(
+    age_learn_l2 &lt; 12 &amp; l1 == 'sp' ~ 'heritage', 
+    age_learn_l2 &lt; 12 &amp; l1 == 'en' ~ 'early_learner', 
+    age_learn_l2 &gt; 12 ~ 'late_learner', 
+    is.na(age_learn_l2) ~ 'monolingual'
+  )
+) |&gt; 
 knitr::kable()
 ```
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; age_learn_l2 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; l1 &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; group &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 101 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; heritage &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 102 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; heritage &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 103 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; heritage &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 104 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; monolingual &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 105 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 18 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; late_learner &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 106 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 17 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; late_learner &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 107 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; early_learner &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 108 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; early_learner &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 109 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; en &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; monolingual &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; heritage &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+
+|  id| age_learn_l2|l1 |group         |
+|---:|------------:|:--|:-------------|
+| 101|            3|sp |heritage      |
+| 102|            2|sp |heritage      |
+| 103|            3|sp |heritage      |
+| 104|           NA|sp |monolingual   |
+| 105|           18|en |late_learner  |
+| 106|           17|en |late_learner  |
+| 107|            3|en |early_learner |
+| 108|            2|en |early_learner |
+| 109|           NA|en |monolingual   |
+| 110|            3|sp |heritage      |
 
 ]
 
@@ -559,7 +463,7 @@ background-position: 90% 50%
 ---
 layout: false
 
-# summarize() &lt;br&gt; group_by %&gt;% summarize()
+# summarize() &lt;br&gt; group_by |&gt; summarize()
 
 ### Note
 
@@ -580,12 +484,14 @@ a function of `cyl`
 ???
 
 ```
-mtcars %&gt;% 
-  group_by(., cyl) %&gt;% 
-  summarize(., mean_mpg = mean(mpg), 
-               sd_mpg = sd(mpg), 
-               min_mpg = min(mpg), 
-               max_mpg = max(mpg))
+mtcars |&gt; 
+  group_by(cyl) |&gt; 
+  summarize(
+    mean_mpg = mean(mpg), 
+    sd_mpg = sd(mpg), 
+    min_mpg = min(mpg), 
+    max_mpg = max(mpg)
+  )
 ```
 
 ---
@@ -652,108 +558,24 @@ layout: true
 
 
 .pull-left[
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; spec &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; test1 &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; test2 &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; span01 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g1_lo &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 64.31 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69.2 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; span02 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g1_lo &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 59.81 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 63.7 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; span03 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g1_hi &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66.08 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 70.9 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; span04 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g1_hi &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 72.78 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 79.2 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; span05 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g2_lo &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 68.29 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75.4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; span06 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g2_lo &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69.22 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 76.7 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; span07 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g2_hi &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 71.36 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77.2 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; span08 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g2_hi &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 80.37 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 88.9 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; cata01 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g1_lo &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75.63 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 83.6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; cata02 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g1_lo &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 71.25 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 78.8 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; cata03 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g1_hi &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69.09 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 74.6 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; cata04 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g1_hi &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 72.35 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 80.7 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; cata05 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g2_lo &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 71.66 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 77.9 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; cata06 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g2_lo &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69.01 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75.0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; cata07 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; g2_hi &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69.86 &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 76.0 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|id     |spec  | test1| test2|
+|:------|:-----|-----:|-----:|
+|span01 |g1_lo | 64.31|  69.2|
+|span02 |g1_lo | 59.81|  63.7|
+|span03 |g1_hi | 66.08|  70.9|
+|span04 |g1_hi | 72.78|  79.2|
+|span05 |g2_lo | 68.29|  75.4|
+|span06 |g2_lo | 69.22|  76.7|
+|span07 |g2_hi | 71.36|  77.2|
+|span08 |g2_hi | 80.37|  88.9|
+|cata01 |g1_lo | 75.63|  83.6|
+|cata02 |g1_lo | 71.25|  78.8|
+|cata03 |g1_hi | 69.09|  74.6|
+|cata04 |g1_hi | 72.35|  80.7|
+|cata05 |g2_lo | 71.66|  77.9|
+|cata06 |g2_lo | 69.01|  75.0|
+|cata07 |g2_hi | 69.86|  76.0|
 ]
 
 .pull-right[
@@ -790,64 +612,21 @@ class: middle, center
 
 - How many variables does the column `id` contain?
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; pre_test &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 101_m_ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 102_m_ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 103_m_ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 104_m_exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 105_m_exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 68 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 106_m_exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 58 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 107_f_ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 108_f_ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 109_f_ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 110_f_exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 54 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 111_f_exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 112_f_exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|id        | pre_test|
+|:---------|--------:|
+|101_m_ctr |       75|
+|102_m_ctr |       70|
+|103_m_ctr |       65|
+|104_m_exp |       66|
+|105_m_exp |       68|
+|106_m_exp |       58|
+|107_f_ctr |       60|
+|108_f_ctr |       66|
+|109_f_ctr |       69|
+|110_f_exp |       54|
+|111_f_exp |       88|
+|112_f_exp |       44|
 
 ]
 
@@ -858,97 +637,30 @@ class: middle, center
 
 
 
-```r
-my_data_wide %&gt;% 
-  separate(col = id, 
-           into = c('id', 'group', 'condition'), 
-           sep = "_") 
+``` r
+my_data_wide |&gt; 
+  separate(
+    col = id, 
+    into = c('id', 'group', 'condition'), 
+    sep = "_"
+  ) 
 ```
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; group &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; condition &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; pre_test &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 101 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 102 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 103 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 104 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 105 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 68 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 106 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 58 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 107 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 108 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 109 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 54 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 112 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|id  |group |condition | pre_test|
+|:---|:-----|:---------|--------:|
+|101 |m     |ctr       |       75|
+|102 |m     |ctr       |       70|
+|103 |m     |ctr       |       65|
+|104 |m     |exp       |       66|
+|105 |m     |exp       |       68|
+|106 |m     |exp       |       58|
+|107 |f     |ctr       |       60|
+|108 |f     |ctr       |       66|
+|109 |f     |ctr       |       69|
+|110 |f     |exp       |       54|
+|111 |f     |exp       |       88|
+|112 |f     |exp       |       44|
 ]
 
 ---
@@ -972,90 +684,21 @@ class: middle, center
 
 - You probably won't use this often
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; group &lt;/th&gt;
-   &lt;th style="text-align:left;"&gt; condition &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; pre_test &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 101 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 102 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 103 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 104 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 105 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 68 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 106 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; m &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 58 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 107 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 108 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 109 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 54 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 112 &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; f &lt;/td&gt;
-   &lt;td style="text-align:left;"&gt; exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|id  |group |condition | pre_test|
+|:---|:-----|:---------|--------:|
+|101 |m     |ctr       |       75|
+|102 |m     |ctr       |       70|
+|103 |m     |ctr       |       65|
+|104 |m     |exp       |       66|
+|105 |m     |exp       |       68|
+|106 |m     |exp       |       58|
+|107 |f     |ctr       |       60|
+|108 |f     |ctr       |       66|
+|109 |f     |ctr       |       69|
+|110 |f     |exp       |       54|
+|111 |f     |exp       |       88|
+|112 |f     |exp       |       44|
 
 ]
 
@@ -1066,71 +709,30 @@ class: middle, center
 
 
 
-```r
-my_data_wide %&gt;% 
-  unite(., col = id_group_condition,      
-           c('id', 'group', 'condition'), 
-           sep = "-")                     
+``` r
+my_data_wide |&gt; 
+  unite(
+    col = id_group_condition, 
+    c('id', 'group', 'condition'), 
+    sep = "-"
+  )
 ```
 
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; id_group_condition &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; pre_test &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 101-m-ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 75 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 102-m-ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 70 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 103-m-ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 65 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 104-m-exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 105-m-exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 68 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 106-m-exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 58 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 107-f-ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 60 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 108-f-ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 66 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 109-f-ctr &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 69 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 110-f-exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 54 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 111-f-exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; 112-f-exp &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+
+|id_group_condition | pre_test|
+|:------------------|--------:|
+|101-m-ctr          |       75|
+|102-m-ctr          |       70|
+|103-m-ctr          |       65|
+|104-m-exp          |       66|
+|105-m-exp          |       68|
+|106-m-exp          |       58|
+|107-f-ctr          |       60|
+|108-f-ctr          |       66|
+|109-f-ctr          |       69|
+|110-f-exp          |       54|
+|111-f-exp          |       88|
+|112-f-exp          |       44|
 
 ]
 
@@ -1153,7 +755,7 @@ class: middle, center
 ---
 
 .pull-left[
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
@@ -1234,7 +836,7 @@ class: middle, center
 --
 
 .pull-right[
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
@@ -1371,13 +973,16 @@ class: middle, center
 class: middle
 
 
-```r
-my_data_wide %&gt;% 
-  pivot_longer(., cols = c("pre_test", "post_test"), 
-                  names_to = "test", values_to = "score")
+``` r
+my_data_wide |&gt; 
+  pivot_longer(
+    cols = c("pre_test", "post_test"), 
+    names_to = "test", 
+    values_to = "score"
+  )
 ```
 
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
@@ -1540,13 +1145,13 @@ background-size: contain
 ???
 
 ```
-pre_post %&gt;% 
-  pivot_longer(., cols = test1:test2, names_to = "test", values_to = "score")
+pre_post |&gt; 
+  pivot_longer(cols = test1:test2, names_to = "test", values_to = "score")
 ```
 
 ```
-pre_post %&gt;% 
-  pivot_longer(., cols = -c("id", "spec"), names_to = "test", values_to = "score")
+pre_post |&gt; 
+  pivot_longer(cols = -c("id", "spec"), names_to = "test", values_to = "score")
 ```
 
 ---
@@ -1568,7 +1173,7 @@ class: middle, center
 ---
 
 .pull-left[
-&lt;table class="table" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table" style="color: black; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:left;"&gt; id &lt;/th&gt;
@@ -1714,14 +1319,15 @@ class: middle, center
 
 
 
-```r
-my_data_long %&gt;% 
-* pivot_wider(names_from = "test", values_from = "score") %&gt;%
-  ggplot(., aes(x = pre_test, post_test)) + 
-    geom_vline(xintercept = mean(my_data_wide$pre_test), lty = 3) + 
-    geom_hline(yintercept = mean(my_data_wide$post_test), lty = 3) + 
-    geom_point(size = 4) + 
-    theme_test(base_size = 18, base_family = "Times")
+``` r
+my_data_long |&gt; 
+* pivot_wider(names_from = "test", values_from = "score") |&gt;
+  ggplot() + 
+  aes(x = pre_test, post_test) + 
+  geom_vline(xintercept = mean(my_data_wide$pre_test), lty = 3) + 
+  geom_hline(yintercept = mean(my_data_wide$post_test), lty = 3) + 
+  geom_point(size = 4) + 
+  theme_test(base_size = 18, base_family = "Palatino")
 ```
 
 &lt;img src="index_files/figure-html/spread-ex2-1.png" width="936" style="display: block; margin: auto;" /&gt;
@@ -1748,11 +1354,12 @@ my_data_long %&gt;%
 ???
 
 ```
-language_diversity %&gt;% 
-  pivot_wider(names_from = "Measurement", values_from = "Value") %&gt;% 
-  ggplot(., aes(x = log(Area), y = log(Langs), label = Country)) + 
-    geom_text() + 
-    geom_smooth(method = "glm", method.args=list(family = "poisson"))
+language_diversity |&gt; 
+  pivot_wider(names_from = "Measurement", values_from = "Value") |&gt; 
+  ggplot() + 
+  aes(x = log(Area), y = log(Langs), label = Country) + 
+  geom_text() + 
+  geom_smooth(method = "glm", method.args=list(family = "poisson"))
 ```
 
 ---
@@ -1783,7 +1390,7 @@ background-size: contain
 - You can pipe directly into any other verbs to tidy your data
 - Ex.  
 
-```r
+``` r
 my_df &lt;- read_csv("./data/raw/raw_data.csv")
 ```
 ]
@@ -1797,11 +1404,13 @@ my_df &lt;- read_csv("./data/raw/raw_data.csv")
 - You can pipe into `write_csv()` right after tidying your data
 - Ex.  
 
-```r
-my_df &lt;- read_csv("./data/raw/raw_data.csv") %&gt;% 
-mutate(., new_var = var1 - var2, 
-          group_sum = if_else(group == "level", -1, 1)) %&gt;% 
-write_csv(., path = "./data/tidy/tidy_data.csv")
+``` r
+my_df &lt;- read_csv("./data/raw/raw_data.csv") |&gt; 
+mutate(
+  new_var = var1 - var2, 
+  group_sum = if_else(group == "level", -1, 1)
+) |&gt; 
+write_csv(path = "./data/tidy/tidy_data.csv")
 ```
 ]
 
@@ -1992,6 +1601,19 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
 (function() {
   "use strict"
   // Replace <script> tags in slides area to make them executable
